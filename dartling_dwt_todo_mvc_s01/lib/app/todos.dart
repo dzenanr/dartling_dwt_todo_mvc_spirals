@@ -1,7 +1,7 @@
 part of todo_mvc_app;
 
 class Todos extends ui.VerticalPanel {
-  var listPanel = new ui.VerticalPanel();
+  var _listPanel = new ui.VerticalPanel();
 
   Todos(Tasks tasks) {
     spacing = 10;
@@ -21,13 +21,13 @@ class Todos extends ui.VerticalPanel {
         }));
     add(newTodo);
 
-    listPanel.spacing = 4;
-    add(listPanel);
+    _listPanel.spacing = 4;
+    add(_listPanel);
   }
 
   _add(Task task) {
     var title = new ui.Label(task.title);
-    listPanel.add(title);
+    _listPanel.add(title);
   }
 }
 
