@@ -1,0 +1,25 @@
+Spiral 1
+
++ test model
+
++ add a new todo
++ display a list of todos
+
+Spiral 2
+
++ test model
+
++ load tasks from the local storage
++ save tasks to the local storage
+
++ implement ActionReactionApi
+
+Spiral 3
+
++ test model
+
++ undo
++ redo
+
++ implement PastReactionApi
+
