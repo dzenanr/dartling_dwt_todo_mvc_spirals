@@ -2,7 +2,7 @@ Done
 
 + test model
 
-+ display a list of todos
 + add a new todo
-+ display basic info about the app
++ display a list of todos
+
 

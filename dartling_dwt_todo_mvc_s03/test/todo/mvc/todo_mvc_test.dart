@@ -76,6 +76,43 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(tasks.errors.toList()[0].category, equals('required'));
       tasks.errors.display(title:'Add Task Required Title Error');
     });
+
+    test('Find Task by New Oid', () {
+      var oid = new Oid.ts(1345648254063);
+      var task = tasks.singleWhereOid(oid);
+      expect(task, isNull);
+    });
+    test('Find Task by Attribute', () {
+      var title = 'generate json from the model';
+      var task = tasks.firstWhereAttribute('title', title);
+      expect(task, isNotNull);
+      expect(task.title, equals(title));
+    });
+    test('Random Task', () {
+      var task1 = tasks.random();
+      expect(task1, isNotNull);
+      task1.display(prefix:'random 1');
+      var task2 = tasks.random();
+      expect(task2, isNotNull);
+      task2.display(prefix:'random 2');
+    });
+
+    test('Find Task then Set Oid with Failure', () {
+      var title = 'generate json from the model';
+      var task = tasks.firstWhereAttribute('title', title);
+      expect(task, isNotNull);
+      expect(() => task.oid = new Oid.ts(1345648254063), throws);
+    });
+    test('Find Task then Set Oid with Success', () {
+      var title = 'generate json from the model';
+      var task = tasks.firstWhereAttribute('title', title);
+      expect(task, isNotNull);
+      task.display(prefix:'before oid set: ');
+      task.concept.updateOid = true;
+      task.oid = new Oid.ts(1345648254063);
+      task.concept.updateOid = false;
+      task.display(prefix:'after oid set: ');
+    });
   });
 }
 
