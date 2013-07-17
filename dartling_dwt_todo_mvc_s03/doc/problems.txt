@@ -1,8 +1,4 @@
 Problems
 
-* in lib/app/header.dart:
-  replace visible by enabled; both buttons stay disabled all the time
 
-* in lib/app/todos.dart:
-  _remove does not behave properly
 

@@ -2,4 +2,8 @@ To Do
 
 - test model
 
+- complete todo
 - remove todo
+
+- start using css
+
