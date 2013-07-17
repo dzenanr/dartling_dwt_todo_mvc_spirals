@@ -71,17 +71,6 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
         _remove(action.entity);
       }
     }
-
-    // to delete after debuging _remove
-    print('');
-    print('---');
-    for (var task in _tasks) {
-      print(task.title);
-    }
-    print('---');
-    print('');
-    // to delete after debuging _remove
-
     _todoApp.save();
   }
 }
