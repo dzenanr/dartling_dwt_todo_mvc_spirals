@@ -1,0 +1,13 @@
+Done
+
++ test model
+
++ add specific code to Task and Tasks
+
++ enable and disable undo and redo buttons
++ clear completed todos
++ add count of left todos
+
++ continued using Todo MVC css
+
+

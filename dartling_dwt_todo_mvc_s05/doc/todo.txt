@@ -1,0 +1,11 @@
+To Do
+
+- test model
+
+- complete all todos
+- display all, left or completed todos
+
+- continue using Todo MVC css
+
+
+
