@@ -48,21 +48,12 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
     _listPanel.add(todo);
   }
 
-  /*
   _remove(Task task) {
-    ui.WidgetCollection widgets = _listPanel.getChildren();
-    for (var widget in widgets) {
-      if (widget.text == task.title) {
-        widgets.removeWidget(widget);
+    for (int i = 0; i < _listPanel.getWidgetCount(); i++) {
+      ui.Label w = _listPanel.getWidgetAt(i) as ui.Label;
+      if (w.text == task.title) {
+        _listPanel.remove(w);
       }
-    }
-  }
-  */
-
-  _remove(Task task) {
-    _listPanel.clear();
-    for (var task in _tasks) {
-      _add(task);
     }
   }
 

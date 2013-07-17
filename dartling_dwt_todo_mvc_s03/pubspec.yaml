@@ -6,7 +6,7 @@ description: "Todo.Mvc done with dartling and DWT. \nBased on TodoMVC in Dart. \
 homepage: http://ondart.me/
 dependencies:
   browser: any
-  dart_web_toolkit: '>=0.3.0'
+  dart_web_toolkit: '>=0.3.17+1'
   dartling:
     git: git://github.com/dzenanr/dartling.git
   dartling_default_app:

@@ -14,29 +14,29 @@ class Header extends ui.HorizontalPanel implements PastReactionApi {
         'undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
           session.past.undo();
         }));
-    _undo.visible = false; // enabled does not work properly
+    _undo.enabled = false;
     add(_undo);
     _redo = new ui.Button(
         'redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
           session.past.redo();
         }));
-    _redo.visible = false;
+    _redo.enabled = false;
     add(_redo);
   }
 
   reactCannotUndo() {
-    _undo.visible = false;
+    _undo.enabled = false;
   }
 
   reactCanUndo() {
-    _undo.visible = true;
+    _undo.enabled = true;
   }
 
   reactCanRedo() {
-    _redo.visible = true;
+    _redo.enabled = true;
   }
 
   reactCannotRedo() {
-    _redo.visible = false;
+    _redo.enabled = false;
   }
 }
