@@ -2,5 +2,12 @@ To Do
 
 - test model
 
+- complete all todos
+
+- add count of left todos
+- clear completed todos
+
+- continue using Todo MVC css
+
 
 

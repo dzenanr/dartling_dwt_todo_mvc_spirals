@@ -5,5 +5,5 @@ To Do
 - complete todo
 - remove todo
 
-- start using css
+- start using Todo MVC css
 

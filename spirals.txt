@@ -23,3 +23,14 @@ Spiral 3
 
 + implement PastReactionApi
 
+Spiral 4
+
++ test model
+
++ complete todo
++ remove todo
+
++ started using Todo MVC css
+
+
+

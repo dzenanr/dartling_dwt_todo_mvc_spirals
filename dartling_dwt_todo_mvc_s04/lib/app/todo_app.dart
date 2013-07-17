@@ -10,16 +10,14 @@ class TodoApp {
     MvcEntries model = domain.getModelEntries('Mvc');
     tasks = model.tasks;
 
-    var rootPanel = ui.RootLayoutPanel.get();
-    var vPanel = new ui.VerticalPanel();
-    vPanel.spacing = 8;
-    rootPanel.add(vPanel);
-    var title = new ui.Label('Todos');
-    vPanel.add(title);
+    var root = ui.RootLayoutPanel.get();
+    var todoApp = new ui.VerticalPanel();
+    todoApp.spacing = 8;
+    root.add(todoApp);
     var header = new Header(this);
-    vPanel.add(header);
+    todoApp.add(header);
     var todos = new Todos(this);
-    vPanel.add(todos);
+    todoApp.add(todos);
   }
 
   save() {
