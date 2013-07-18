@@ -1,0 +1,12 @@
+Done
+
++ test model
+
++ add specific code to Task
+
++ complete all todos
++ display all, left or completed todos
+
++ continued using Todo MVC css
+
+

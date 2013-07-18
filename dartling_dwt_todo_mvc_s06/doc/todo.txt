@@ -1,0 +1,15 @@
+To Do
+
+- test model
+
+- edit todo
+- validate todo text (task title) length
+- validate todo unique text (task title)
+  -- when there are 2 todos with the same text and you want to complete all,
+     only one is completed; the other is not although its task is completed
+     (find todo in Todos finds the first todo with that task.title)
+
+- continue using Todo MVC css
+
+
+

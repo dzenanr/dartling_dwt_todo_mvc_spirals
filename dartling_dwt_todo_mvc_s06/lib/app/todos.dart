@@ -48,10 +48,47 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
     }
   }
 
+  displayAll() {
+    for (int i = 0; i < getWidgetCount(); i++) {
+      Todo todo = getWidgetAt(i);
+      todo.visible = true;
+    }
+  }
+
+  displayLeft() {
+    for (int i = 0; i < getWidgetCount(); i++) {
+      Todo todo = getWidgetAt(i);
+      if (todo.task.left) {
+        todo.visible = true;
+      } else {
+        todo.visible = false;
+      }
+    }
+  }
+
+  displayCompleted() {
+    for (int i = 0; i < getWidgetCount(); i++) {
+      Todo todo = getWidgetAt(i);
+      if (todo.task.completed) {
+        todo.visible = true;
+      } else {
+        todo.visible = false;
+      }
+    }
+  }
+
   react(ActionApi action) {
+    updateTodo(SetAttributeAction action) {
+      if (action.property == 'completed') {
+        _complete(action.entity);
+      }
+    }
+
     if (action is Transaction) {
       for (var transactionAction in action.past.actions) {
-        if (transactionAction is RemoveAction) {
+        if (transactionAction is SetAttributeAction) {
+          updateTodo(transactionAction);
+        } else if (transactionAction is RemoveAction) {
           if (transactionAction.undone) {
             _add(transactionAction.entity);
           } else {
@@ -72,9 +109,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
         _remove(action.entity);
       }
     } else if (action is SetAttributeAction) {
-      if (action.property == 'completed') {
-        _complete(action.entity);
-      }
+      updateTodo(action);
     }
     _todoApp.updateDisplay();
     _todoApp.save();
