@@ -1,0 +1,10 @@
+To Do
+
+- test model with new tests
+
+- edit todo
+
+- continue using Todo MVC css
+
+
+

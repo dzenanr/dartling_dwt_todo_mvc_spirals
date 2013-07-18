@@ -1,61 +1,4 @@
-Spiral 1
-
-+ test model
-
-+ add a new todo
-+ display a list of todos
-
-Spiral 2
-
-+ test model with new tests
-
-+ load tasks from the local storage
-+ save tasks to the local storage
-
-+ implement ActionReactionApi
-
-Spiral 3
-
-+ test model with new tests
-
-+ undo
-+ redo
-
-+ implement PastReactionApi
-
-Spiral 4
-
-+ test model with new tests
-
-+ complete todo
-+ remove todo
-
-+ started using Todo MVC css
-
-Spiral 5
-
-+ test model with new tests
-
-+ add specific code to Task and Tasks
-
-+ enable and disable undo and redo buttons
-+ clear completed todos
-+ add count of left todos
-
-+ continued using Todo MVC css
-
-Spiral 6
-
-+ test model with new tests
-
-+ add specific code to Task
-
-+ complete all todos
-+ display all, left or completed todos
-
-+ continued using Todo MVC css
-
-Spiral 7
+Done
 
 + change the model in Model Concepts
   ++ title is now id
@@ -88,4 +31,10 @@ Spiral 7
      when there are 2 todos with the same title and you want to complete all,
      only one is completed; the other is not although its task is completed
      (find todo in Todos finds the first todo with that task.title)
+
+Not done
+
+- edit todo
+- continue using Todo MVC css
+
 
