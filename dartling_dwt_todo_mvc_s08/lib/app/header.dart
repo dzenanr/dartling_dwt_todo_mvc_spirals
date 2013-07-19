@@ -6,6 +6,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
   ui.CheckBox _completeAll;
   ui.Button _undo;
   ui.Button _redo;
+  ui.Button _cancelNewTodo;
 
   Header(TodoApp todoApp) {
     DomainSession session = todoApp.session;
@@ -39,19 +40,21 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     updateDisplay();
     _completeAll.addValueChangeHandler(new event.ValueChangeHandlerAdapter(
       (event.ValueChangeEvent e) {
-        var transaction = new Transaction('complete-all', session);
-        if (_tasks.left.length == 0) {
-          for (Task task in _tasks) {
-            transaction.add(
-                new SetAttributeAction(session, task, 'completed', false));
+        if (_tasks.length > 0) {
+          var transaction = new Transaction('complete-all', session);
+          if (_tasks.left.length == 0) {
+            for (Task task in _tasks) {
+              transaction.add(
+                  new SetAttributeAction(session, task, 'completed', false));
+            }
+          } else {
+            for (Task task in _tasks.left) {
+              transaction.add(
+                  new SetAttributeAction(session, task, 'completed', true));
+            }
           }
-        } else {
-          for (Task task in _tasks.left) {
-            transaction.add(
-                new SetAttributeAction(session, task, 'completed', true));
-          }
+          transaction.doit();
         }
-        transaction.doit();
       })
     );
     actionPanel.add(_completeAll);
@@ -92,6 +95,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             bool done = new AddAction(session, _tasks, task).doit();
             if (done) {
               newTodo.text = '';
+              _cancelNewTodo.getElement().classes.add('disabled-todo-button');
             } else {
               var e = '';
               for (ValidationError ve in _tasks.errors) {
@@ -101,27 +105,37 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
               _tasks.errors.clear();
             }
           }
+        } else {
+          _cancelNewTodo.getElement().classes.remove('disabled-todo-button');
         }
       })
     );
     newTodoPanel.add(newTodo);
 
-    var cancelNewTodo = new ui.Button(
+    _cancelNewTodo = new ui.Button(
       'Cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
         newTodo.text = '';
+        _cancelNewTodo.getElement().classes.add('disabled-todo-button');
       })
     );
-    cancelNewTodo.getElement().classes.add('todo-button');
-    newTodoPanel.add(cancelNewTodo);
+    _cancelNewTodo.getElement().classes.add('todo-button');
+    _cancelNewTodo.getElement().classes.add('disabled-todo-button');
+    newTodoPanel.add(_cancelNewTodo);
   }
 
   updateDisplay() {
     var allLength = _tasks.length;
-    var completedLength = _tasks.completed.length;
-    if (allLength > 0 && allLength == completedLength) {
-      _completeAll.setValue(true);
+    if (allLength > 0) {
+      _completeAll.enabled = true;
+      var completedLength = _tasks.completed.length;
+      if (allLength > 0 && allLength == completedLength) {
+        _completeAll.setValue(true);
+      } else {
+        _completeAll.setValue(false);
+      }
     } else {
       _completeAll.setValue(false);
+      _completeAll.enabled = false;
     }
   }
 
