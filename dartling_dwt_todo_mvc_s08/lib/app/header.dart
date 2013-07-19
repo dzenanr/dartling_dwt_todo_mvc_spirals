@@ -38,36 +38,39 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     _completeAll = new ui.CheckBox();
     updateDisplay();
     _completeAll.addValueChangeHandler(new event.ValueChangeHandlerAdapter(
-        (event.ValueChangeEvent e) {
-          var transaction = new Transaction('complete-all', session);
-          if (_tasks.left.length == 0) {
-            for (Task task in _tasks) {
-              transaction.add(
-                  new SetAttributeAction(session, task, 'completed', false));
-            }
-          } else {
-            for (Task task in _tasks.left) {
-              transaction.add(
-                  new SetAttributeAction(session, task, 'completed', true));
-            }
+      (event.ValueChangeEvent e) {
+        var transaction = new Transaction('complete-all', session);
+        if (_tasks.left.length == 0) {
+          for (Task task in _tasks) {
+            transaction.add(
+                new SetAttributeAction(session, task, 'completed', false));
           }
-          transaction.doit();
-        }));
+        } else {
+          for (Task task in _tasks.left) {
+            transaction.add(
+                new SetAttributeAction(session, task, 'completed', true));
+          }
+        }
+        transaction.doit();
+      })
+    );
     actionPanel.add(_completeAll);
 
     _undo = new ui.Button(
-        'Undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
-          session.past.undo();
-        }));
+      'Undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
+        session.past.undo();
+      })
+    );
     _undo.enabled = false;
     _undo.getElement().classes.add('todo-button');
     _undo.getElement().classes.add('disabled-todo-button');
     actionPanel.add(_undo);
 
     _redo = new ui.Button(
-        'Redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
-          session.past.redo();
-        }));
+      'Redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
+        session.past.redo();
+      })
+    );
     _redo.enabled = false;
     _redo.getElement().classes.add('todo-button');
     _undo.getElement().classes.add('disabled-todo-button');
@@ -80,32 +83,34 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     var newTodo = new ui.TextBox();
     newTodo.setSize('560px', '16px');
     newTodo.addKeyPressHandler(new
-        event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
-          if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
-            var title = newTodo.text.trim();
-            if (title != '') {
-              var task = new Task(_tasks.concept);
-              task.title = title;
-              bool done = new AddAction(session, _tasks, task).doit();
-              if (done) {
-                newTodo.text = '';
-              } else {
-                var e = '';
-                for (ValidationError ve in _tasks.errors) {
-                  e = '${ve.message} $e';
-                }
-                newTodo.text = '$e';
-                _tasks.errors.clear();
+      event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
+        if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
+          var title = newTodo.text.trim();
+          if (title != '') {
+            var task = new Task(_tasks.concept);
+            task.title = title;
+            bool done = new AddAction(session, _tasks, task).doit();
+            if (done) {
+              newTodo.text = '';
+            } else {
+              var e = '';
+              for (ValidationError ve in _tasks.errors) {
+                e = '${ve.message} $e';
               }
+              newTodo.text = '$e';
+              _tasks.errors.clear();
             }
           }
-        }));
+        }
+      })
+    );
     newTodoPanel.add(newTodo);
 
     var cancelNewTodo = new ui.Button(
-        'Cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
-          newTodo.text = '';
-        }));
+      'Cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
+        newTodo.text = '';
+      })
+    );
     cancelNewTodo.getElement().classes.add('todo-button');
     newTodoPanel.add(cancelNewTodo);
   }

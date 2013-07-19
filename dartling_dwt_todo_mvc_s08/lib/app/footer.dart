@@ -29,14 +29,15 @@ class Footer extends ui.HorizontalPanel {
     add(_selection);
 
     _clearCompleted = new ui.Button(
-        'Clear completed', new event.ClickHandlerAdapter((event.ClickEvent e) {
-          var transaction = new Transaction('clear-completed', session);
-          for (Task task in _tasks.completed) {
-            transaction.add(
-                new RemoveAction(session, _tasks.completed, task));
-          }
-          transaction.doit();
-        }));
+      'Clear completed', new event.ClickHandlerAdapter((event.ClickEvent e) {
+        var transaction = new Transaction('clear-completed', session);
+        for (Task task in _tasks.completed) {
+          transaction.add(
+              new RemoveAction(session, _tasks.completed, task));
+        }
+        transaction.doit();
+      })
+    );
     _clearCompleted.getElement().classes.add('todo-button');
     _clearCompleted.getElement().classes.add('disabled-todo-button');
     add(_clearCompleted);
