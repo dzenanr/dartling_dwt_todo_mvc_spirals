@@ -43,8 +43,8 @@ class Todo extends ui.HorizontalPanel {
                 for (ValidationError ve in tasks.errors) {
                   e = '${ve.message} $e';
                 }
-                //_todo.text = '$e';
-                _todo.text = oldTitle;
+                _todo.text = '$oldTitle : $e';
+                //_todo.text = oldTitle;
                 tasks.errors.clear();
               }
             }
@@ -59,8 +59,6 @@ class Todo extends ui.HorizontalPanel {
     remove.getElement().classes.add('todo-button');
     add(remove);
   }
-
-  String get title => _todo.text;
 
   complete(bool completed) {
     _completed.setValue(completed);

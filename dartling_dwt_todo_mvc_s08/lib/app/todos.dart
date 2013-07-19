@@ -28,7 +28,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
   Todo _find(Task task) {
     for (int i = 0; i < getWidgetCount(); i++) {
       Todo todo = getWidgetAt(i);
-      if (todo.title == task.title) {
+      if (todo.task == task) {
         return todo;
       }
     }
