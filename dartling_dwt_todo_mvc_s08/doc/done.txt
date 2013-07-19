@@ -1,0 +1,12 @@
+Done
+
++ test model with new tests
+
++ add links to dartling, DWT and Todo MVC
++ edit todo
+
+Not done
+
+- continue using Todo MVC css
+
+

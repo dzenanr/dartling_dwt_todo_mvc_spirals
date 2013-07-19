@@ -1,0 +1,103 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #eaeaea url('img/bg.png');
+  color: #4d4d4d;
+  width: 550px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+#app-title {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  font-size: 70px;
+  font-weight: bold;
+  text-align: center;
+  color: #b3b3b3;
+  color: rgba(255, 255, 255, 0.3);
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+}
+
+.todo-button {
+  float: right;
+  position: relative;
+  line-height: 16px;
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  margin-left: 4px;
+  padding: 0 10px;
+  border-radius: 3px;
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.disabled-todo-button {
+  color: #888888;
+}
+
+.todo-button:hover {
+  background: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+#todos {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+}
+
+.selection-list-box {
+  float: right;
+  position: relative;
+  line-height: 16px;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+#footer {
+  color: #777777;
+  padding: 0 15px;
+  position: absolute;
+  right: 0;
+  bottom: -31px;
+  left: 0;
+  height: 20px;
+  z-index: 1;
+  text-align: center;
+}
+
+#footer:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 33px;
+  left: 0;
+  height: 50px;
+  z-index: -1;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),
+        0 6px 0 -3px rgba(255, 255, 255, 0.8),
+        0 7px 1px -3px rgba(0, 0, 0, 0.3),
+        0 43px 0 -6px rgba(255, 255, 255, 0.8),
+        0 44px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+

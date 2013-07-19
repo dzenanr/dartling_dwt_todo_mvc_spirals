@@ -1,0 +1,7 @@
+To Do
+
+- apply the original Todo MVC css as at http://todomvc.com/
+- follow Getting Involved at http://todomvc.com/
+
+
+

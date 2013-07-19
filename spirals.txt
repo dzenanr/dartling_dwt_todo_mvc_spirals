@@ -89,3 +89,10 @@ Spiral 7
      only one is completed; the other is not although its task is completed
      (find todo in Todos finds the first todo with that task.title)
 
+Spiral 8
+
++ test model with new tests
+
++ add links to dartling, DWT and Todo MVC
++ edit todo
+
