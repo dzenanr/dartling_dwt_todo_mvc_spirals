@@ -19,9 +19,9 @@ class Footer extends ui.HorizontalPanel {
     add(_leftCount);
 
     _selection = new ui.ListBox();
-    _selection.addItem('All');
-    _selection.addItem('Left');
-    _selection.addItem('Completed');
+    _selection.addItem('all');
+    _selection.addItem('left');
+    _selection.addItem('completed');
     _selection.addChangeHandler(new event.ChangeHandlerAdapter((event.ChangeEvent event) {
       _updateSelectionDisplay();
     }));
@@ -55,18 +55,24 @@ class Footer extends ui.HorizontalPanel {
   }
 
   updateDisplay() {
-    var completedLength = _tasks.completed.length;
-    var leftLength = _tasks.left.length;
-    _leftCount.text = '${leftLength} todo${leftLength != 1 ? 's' : ''} left';
+    var allLength = _tasks.length;
+    if (allLength > 0) {
+      visible = true;
+      var completedLength = _tasks.completed.length;
+      var leftLength = _tasks.left.length;
+      _leftCount.text = '${leftLength} todo${leftLength != 1 ? 's' : ''} left';
 
-    _updateSelectionDisplay();
+      _updateSelectionDisplay();
 
-    if (completedLength == 0) {
-      _clearCompleted.getElement().classes.add('disabled-todo-button');
+      if (completedLength == 0) {
+        _clearCompleted.getElement().classes.add('disabled-todo-button');
+      } else {
+        _clearCompleted.getElement().classes.remove('disabled-todo-button');
+      }
+      _clearCompleted.text = 'clear completed (${completedLength})';
     } else {
-      _clearCompleted.getElement().classes.remove('disabled-todo-button');
+      visible = false;
     }
-    _clearCompleted.text = 'Clear completed (${completedLength})';
   }
 }
 

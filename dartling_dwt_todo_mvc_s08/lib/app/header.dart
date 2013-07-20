@@ -13,7 +13,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     session.past.startPastReaction(this);
     _tasks = todoApp.tasks;
 
-    var appTitle = new ui.Label('Todos');
+    var appTitle = new ui.Label('todos');
     appTitle.getElement().id = 'app-title';
     add(appTitle);
 
@@ -60,7 +60,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     actionPanel.add(_completeAll);
 
     _undo = new ui.Button(
-      'Undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
+      'undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
         session.past.undo();
       })
     );
@@ -70,7 +70,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     actionPanel.add(_undo);
 
     _redo = new ui.Button(
-      'Redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
+      'redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
         session.past.redo();
       })
     );
@@ -113,7 +113,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     newTodoPanel.add(newTodo);
 
     _cancelNewTodo = new ui.Button(
-      'Cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
+      'cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
         newTodo.text = '';
         _cancelNewTodo.getElement().classes.add('disabled-todo-button');
       })
