@@ -59,5 +59,10 @@ class Todo extends ui.HorizontalPanel {
 
   complete(bool completed) {
     _completed.setValue(completed);
+    if (completed) {
+      _todo.getElement().classes.add('completed');
+    } else {
+      _todo.getElement().classes.remove('completed');
+    }
   }
 }

@@ -63,6 +63,11 @@ body {
   border-right: 1px solid lightgray;
 }
 
+#todos .completed {
+  color: #a9a9a9;
+  text-decoration: line-through;
+}
+
 .selection-list-box {
   float: right;
   position: relative;

@@ -1,6 +1,22 @@
 To Do
 
 - apply the original Todo MVC css as at http://todomvc.com/
+  -- <input id="new-todo" placeholder="What needs to be done?" autofocus>
+     - how to add placeholder to newTodo (TextBox) in Header?
+     - newTodo.focus = true; in newTodo does not accept keyboard events?
+  -- when I move linkPanel from Header to TodoApp after footer,
+     it appears before footer?
+  -- should cancel button be renamed to clear text or clear
+     (confusion with clear (remove) completed)?
+  -- replace complete checkboxes by the check image!
+  -- the complete all checkbox image should be moved to the left corner of todos
+  -- check font sizes
+  -- add the paper background image to todos!
+  -- replace selection ListBox to horizontal internal links?
+  -- a renamed todo should stay in the same place!
+  -- when there are no completed todos,
+     make the clear completed button invisible?
+
 - follow Getting Involved at http://todomvc.com/
 
 

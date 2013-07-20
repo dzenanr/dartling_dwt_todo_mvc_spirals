@@ -22,6 +22,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
 
   _add(Task task) {
     var todo = new Todo(_todoApp, task);
+    todo.complete(task.completed);
     add(todo);
   }
 

@@ -83,6 +83,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
     var newTodo = new ui.TextBox();
     newTodo.setSize('560px', '16px');
+    newTodo.focus = true; // newTodo does not accept keyboard events?
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
