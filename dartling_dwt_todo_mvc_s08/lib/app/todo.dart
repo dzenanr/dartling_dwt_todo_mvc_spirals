@@ -49,7 +49,7 @@ class Todo extends ui.HorizontalPanel {
     add(_todo);
 
     ui.Button remove = new ui.Button(
-      'X', new event.ClickHandlerAdapter((event.ClickEvent e) {
+      'x', new event.ClickHandlerAdapter((event.ClickEvent e) {
         new RemoveAction(session, tasks, task).doit();
       })
     );
