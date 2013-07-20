@@ -98,6 +98,16 @@ body {
         0 44px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
+#info {
+  color: #a6a6a6;
+  font-size: 12px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+#info a {
+  color: inherit;
+}
+
 
 
 

@@ -12,7 +12,7 @@ class Footer extends ui.HorizontalPanel {
     DomainSession session = todoApp.session;
     _tasks = todoApp.tasks;
 
-    setSize('658px', '16px');
+    setSize('656px', '16px');
     getElement().id = 'footer';
 
     _leftCount = new ui.Label();

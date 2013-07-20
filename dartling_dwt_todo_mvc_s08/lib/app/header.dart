@@ -19,15 +19,13 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
     var linkPanel = new ui.HorizontalPanel();
     linkPanel.spacing = 8;
+    linkPanel.getElement().id = 'info';
     add(linkPanel);
-
     var dartling = new ui.InlineHtml(
         '<a href="https://github.com/dzenanr/dartling">dartling</a>');
     linkPanel.add(dartling);
-
     var dwt = new ui.InlineHtml('<a href="http://dartwebtoolkit.com/">DWT</a>');
     linkPanel.add(dwt);
-
     var todoMvc = new ui.InlineHtml(
         '<a href="http://todomvc.com/">Todo MVC</a>');
     linkPanel.add(todoMvc);

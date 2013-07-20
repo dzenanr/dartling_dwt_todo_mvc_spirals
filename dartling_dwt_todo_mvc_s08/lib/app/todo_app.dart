@@ -23,6 +23,7 @@ class TodoApp {
     todoApp.add(todos);
     footer = new Footer(this, todos);
     todoApp.add(footer);
+
     updateDisplay();
   }
 

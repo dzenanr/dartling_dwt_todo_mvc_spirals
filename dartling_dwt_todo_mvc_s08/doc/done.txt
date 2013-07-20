@@ -5,8 +5,7 @@ Done
 + add links to dartling, DWT and Todo MVC
 + edit todo
 
-Not done
++ continued using Todo MVC css
 
-- continue using Todo MVC css
 
 
