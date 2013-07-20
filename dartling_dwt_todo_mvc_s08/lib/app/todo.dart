@@ -11,6 +11,7 @@ class Todo extends ui.HorizontalPanel {
     Tasks tasks = todoApp.tasks;
 
     spacing = 8;
+    getElement().id = 'todo';
 
     _completed = new ui.CheckBox();
     _completed.setValue(task.completed);

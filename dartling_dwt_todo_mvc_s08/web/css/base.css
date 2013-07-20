@@ -47,13 +47,13 @@ body {
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.2);
 }
 
-.disabled-todo-button {
-  color: #888888;
-}
-
 .todo-button:hover {
   background: rgba(0, 0, 0, 0.15);
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+.disabled-todo-button {
+  color: #888888;
 }
 
 #todos {
@@ -63,7 +63,7 @@ body {
   border-right: 1px solid lightgray;
 }
 
-#todos .completed {
+#todo .completed {
   color: #a9a9a9;
   text-decoration: line-through;
 }
