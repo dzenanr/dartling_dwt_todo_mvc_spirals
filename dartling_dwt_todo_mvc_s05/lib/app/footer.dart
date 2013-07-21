@@ -10,8 +10,8 @@ class Footer extends ui.HorizontalPanel {
     DomainSession session = todoApp.session;
     _tasks = todoApp.tasks;
 
-    setSize('698px', '16px');
-    getElement().id = 'footer';
+    //setSize('698px', '16px');
+    addStyleName('footer');
 
     _leftCount = new ui.Label();
     add(_leftCount);
@@ -25,7 +25,7 @@ class Footer extends ui.HorizontalPanel {
           }
           transaction.doit();
         }));
-    _clearCompleted.getElement().classes.add('todo-button');
+    _clearCompleted.addStyleName('todo-button');
     add(_clearCompleted);
   }
 

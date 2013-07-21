@@ -12,7 +12,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     spacing = 16;
 
     var title = new ui.Label('Todos');
-    title.getElement().id = 'title';
+    title.addStyleName("title");
     add(title);
 
     var hPanel = new ui.HorizontalPanel();
@@ -23,16 +23,16 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
         'Undo', new event.ClickHandlerAdapter((event.ClickEvent e) {
           session.past.undo();
         }));
-    _undo.visible = false;
-    _undo.getElement().classes.add('todo-button');
+    _undo.enabled = false;
+    _undo.addStyleName('todo-button');
     hPanel.add(_undo);
 
     _redo = new ui.Button(
         'Redo', new event.ClickHandlerAdapter((event.ClickEvent e) {
           session.past.redo();
         }));
-    _redo.visible = false;
-    _redo.getElement().classes.add('todo-button');
+    _redo.enabled = false;
+    _redo.addStyleName('todo-button');
     hPanel.add(_redo);
 
     var newTodo = new ui.TextBox();
@@ -53,18 +53,18 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
   }
 
   reactCannotUndo() {
-    _undo.visible = false;
+    _undo.enabled = false;
   }
 
   reactCanUndo() {
-    _undo.visible = true;
+    _undo.enabled = true;
   }
 
   reactCanRedo() {
-    _redo.visible = true;
+    _redo.enabled = true;
   }
 
   reactCannotRedo() {
-    _redo.visible = false;
+    _redo.enabled = false;
   }
 }

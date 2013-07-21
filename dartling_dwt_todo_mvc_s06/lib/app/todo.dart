@@ -11,6 +11,7 @@ class Todo extends ui.HorizontalPanel {
     Tasks tasks = todoApp.tasks;
 
     spacing = 8;
+    addStyleName('todo');
 
     _completed = new ui.CheckBox();
     _completed.setValue(task.completed);
@@ -21,17 +22,15 @@ class Todo extends ui.HorizontalPanel {
         }));
     add(_completed);
 
-    var sPanel = new ui.SimplePanel();
-    sPanel.setSize('600px', '8px');
-    add(sPanel);
     _todo = new ui.Label(task.title);
-    sPanel.add(_todo);
+    _todo.addStyleName('todo');
+    add(_todo);
 
     ui.Button remove = new ui.Button(
         'X', new event.ClickHandlerAdapter((event.ClickEvent e) {
           new RemoveAction(session, tasks, task).doit();
         }));
-    remove.getElement().classes.add('todo-button');
+    remove.addStyleName('todo-button');
     add(remove);
   }
 

@@ -45,6 +45,7 @@ import 'package:dartling_dwt_todo_mvc/todo_mvc.dart';
 // added by hand
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/event.dart' as event;
+import 'package:dart_web_toolkit/i18n.dart' as i18n;
 
 part 'app/todo_app.dart';
 part 'app/header.dart';

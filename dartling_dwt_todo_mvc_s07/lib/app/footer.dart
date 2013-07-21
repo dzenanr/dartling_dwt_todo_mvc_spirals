@@ -1,6 +1,6 @@
 part of todo_mvc_app;
 
-class Footer extends ui.HorizontalPanel {
+class Footer extends ui.Composite {
   Tasks _tasks;
 
   Todos _todos;
@@ -12,11 +12,17 @@ class Footer extends ui.HorizontalPanel {
     DomainSession session = todoApp.session;
     _tasks = todoApp.tasks;
 
+    ui.Grid grid = new ui.Grid(1, 3);
+    grid.setCellPadding(2);
+    grid.addStyleName('footer');
+    grid.getRowFormatter().setVerticalAlign(0, i18n.HasVerticalAlignment.ALIGN_MIDDLE);
+    initWidget(grid);
+
     setSize('698px', '16px');
-    getElement().id = 'footer';
+    addStyleName('footer');
 
     _leftCount = new ui.Label();
-    add(_leftCount);
+    grid.setWidget(0, 0, _leftCount);
 
     _selection = new ui.ListBox();
     _selection.addItem('All');
@@ -25,8 +31,8 @@ class Footer extends ui.HorizontalPanel {
     _selection.addChangeHandler(new event.ChangeHandlerAdapter((event.ChangeEvent event) {
       _updateSelectionDisplay();
     }));
-    _selection.getElement().classes.add('selection-list-box');
-    add(_selection);
+    _selection.addStyleName('selection-list-box');
+    grid.setWidget(0, 1, _selection);
 
     _clearCompleted = new ui.Button(
         'Clear completed', new event.ClickHandlerAdapter((event.ClickEvent e) {
@@ -37,9 +43,8 @@ class Footer extends ui.HorizontalPanel {
           }
           transaction.doit();
         }));
-    _clearCompleted.getElement().classes.add('todo-button');
-    _clearCompleted.getElement().classes.add('disabled-todo-button');
-    add(_clearCompleted);
+    _clearCompleted.addStyleName('todo-button disabled-todo-button');
+    grid.setWidget(0, 2, _clearCompleted);
   }
 
   _updateSelectionDisplay() {
@@ -61,9 +66,9 @@ class Footer extends ui.HorizontalPanel {
     _updateSelectionDisplay();
 
     if (completedLength == 0) {
-      _clearCompleted.getElement().classes.add('disabled-todo-button');
+      _clearCompleted.addStyleName('disabled-todo-button');
     } else {
-      _clearCompleted.getElement().classes.remove('disabled-todo-button');
+      _clearCompleted.removeStyleName('disabled-todo-button');
     }
     _clearCompleted.text = 'Clear completed (${completedLength})';
   }

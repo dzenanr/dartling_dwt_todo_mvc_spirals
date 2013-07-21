@@ -13,21 +13,27 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     session.past.startPastReaction(this);
     _tasks = todoApp.tasks;
 
-    var appTitle = new ui.Label('todos');
-    appTitle.getElement().id = 'app-title';
+    spacing = 16;
+
+    var appTitle = new ui.Label('Todos');
+    appTitle.addStyleName('app-title');
     add(appTitle);
 
     var linkPanel = new ui.HorizontalPanel();
     linkPanel.spacing = 8;
-    linkPanel.getElement().id = 'info';
+    linkPanel.addStyleName('info');
     add(linkPanel);
-    var dartling = new ui.InlineHtml(
-        '<a href="https://github.com/dzenanr/dartling">dartling</a>');
+    var dartling = new ui.Anchor()
+      ..text="dartling"
+      ..href="https://github.com/dzenanr/dartling";
     linkPanel.add(dartling);
-    var dwt = new ui.InlineHtml('<a href="http://dartwebtoolkit.com/">DWT</a>');
+    var dwt = new ui.Anchor()
+      ..text="DWT"
+      ..href="http://dartwebtoolkit.com";
     linkPanel.add(dwt);
-    var todoMvc = new ui.InlineHtml(
-        '<a href="http://todomvc.com/">Todo MVC</a>');
+    var todoMvc = new ui.Anchor()
+      ..text="Todo MVC"
+      ..href="http://todomvc.com";
     linkPanel.add(todoMvc);
 
     var actionPanel = new ui.HorizontalPanel();
@@ -63,8 +69,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
       })
     );
     _undo.enabled = false;
-    _undo.getElement().classes.add('todo-button');
-    _undo.getElement().classes.add('disabled-todo-button');
+    _undo.addStyleName('todo-button disabled-todo-button');
     actionPanel.add(_undo);
 
     _redo = new ui.Button(
@@ -73,16 +78,16 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
       })
     );
     _redo.enabled = false;
-    _redo.getElement().classes.add('todo-button');
-    _undo.getElement().classes.add('disabled-todo-button');
+    _redo.addStyleName('todo-button disabled-todo-button');
     actionPanel.add(_redo);
 
-    var newTodoPanel = new ui.HorizontalPanel();
-    newTodoPanel.spacing = 12;
+    ui.Grid newTodoPanel = new ui.Grid(1, 2);
+    newTodoPanel.setCellSpacing(12);
+    newTodoPanel.getRowFormatter().setVerticalAlign(0, i18n.HasVerticalAlignment.ALIGN_MIDDLE);
     add(newTodoPanel);
 
     var newTodo = new ui.TextBox();
-    newTodo.setSize('560px', '16px');
+    newTodo.addStyleName('todo-input');
     newTodo.focus = true; // newTodo does not accept keyboard events?
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
@@ -94,7 +99,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             bool done = new AddAction(session, _tasks, task).doit();
             if (done) {
               newTodo.text = '';
-              _cancelNewTodo.getElement().classes.add('disabled-todo-button');
+              _cancelNewTodo.addStyleName('disabled-todo-button');
             } else {
               var e = '';
               for (ValidationError ve in _tasks.errors) {
@@ -105,21 +110,20 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             }
           }
         } else {
-          _cancelNewTodo.getElement().classes.remove('disabled-todo-button');
+          _cancelNewTodo.removeStyleName('disabled-todo-button');
         }
       })
     );
-    newTodoPanel.add(newTodo);
+    newTodoPanel.setWidget(0, 0, newTodo);
 
     _cancelNewTodo = new ui.Button(
       'cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
         newTodo.text = '';
-        _cancelNewTodo.getElement().classes.add('disabled-todo-button');
+        _cancelNewTodo.addStyleName('disabled-todo-button');
       })
     );
-    _cancelNewTodo.getElement().classes.add('todo-button');
-    _cancelNewTodo.getElement().classes.add('disabled-todo-button');
-    newTodoPanel.add(_cancelNewTodo);
+    _cancelNewTodo.addStyleName('todo-button disabled-todo-button');
+    newTodoPanel.setWidget(0, 1, _cancelNewTodo);
   }
 
   updateDisplay() {
@@ -140,21 +144,21 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
   reactCannotUndo() {
     _undo.enabled = false;
-    _undo.getElement().classes.add('disabled-todo-button');
+    _undo.addStyleName('disabled-todo-button');
   }
 
   reactCanUndo() {
     _undo.enabled = true;
-    _undo.getElement().classes.remove('disabled-todo-button');
+    _undo.removeStyleName('disabled-todo-button');
   }
 
   reactCanRedo() {
     _redo.enabled = true;
-    _redo.getElement().classes.remove('disabled-todo-button');
+    _redo.removeStyleName('disabled-todo-button');
   }
 
   reactCannotRedo() {
     _redo.enabled = false;
-    _redo.getElement().classes.add('disabled-todo-button');
+    _redo.addStyleName('disabled-todo-button');
   }
 }

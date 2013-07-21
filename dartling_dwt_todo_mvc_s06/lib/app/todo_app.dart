@@ -13,7 +13,7 @@ class TodoApp {
     MvcEntries model = domain.getModelEntries('Mvc');
     tasks = model.tasks;
 
-    var root = ui.RootLayoutPanel.get();
+    var root = ui.RootPanel.get();
     var todoApp = new ui.VerticalPanel();
     todoApp.spacing = 8;
     root.add(todoApp);

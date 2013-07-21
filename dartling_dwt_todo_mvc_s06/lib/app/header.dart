@@ -15,7 +15,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     spacing = 16;
 
     var appTitle = new ui.Label('Todos');
-    appTitle.getElement().id = 'app-title';
+    appTitle.addStyleName('app-title');
     add(appTitle);
 
     var hPanel = new ui.HorizontalPanel();
@@ -47,8 +47,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
           session.past.undo();
         }));
     _undo.enabled = false;
-    _undo.getElement().classes.add('todo-button');
-    _undo.getElement().classes.add('disabled-todo-button');
+    _undo.addStyleName('todo-button disabled-todo-button');
     hPanel.add(_undo);
 
     _redo = new ui.Button(
@@ -56,12 +55,11 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
           session.past.redo();
         }));
     _redo.enabled = false;
-    _redo.getElement().classes.add('todo-button');
-    _undo.getElement().classes.add('disabled-todo-button');
+    _redo.addStyleName('todo-button disabled-todo-button');
     hPanel.add(_redo);
 
     var newTodo = new ui.TextBox();
-    newTodo.setSize('648px', '24px');
+    newTodo.addStyleName('todo-input');
     newTodo.addKeyPressHandler(new
         event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
           if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
@@ -89,21 +87,21 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
   reactCannotUndo() {
     _undo.enabled = false;
-    _undo.getElement().classes.add('disabled-todo-button');
+    _undo.addStyleName('disabled-todo-button');
   }
 
   reactCanUndo() {
     _undo.enabled = true;
-    _undo.getElement().classes.remove('disabled-todo-button');
+    _undo.removeStyleName('disabled-todo-button');
   }
 
   reactCanRedo() {
     _redo.enabled = true;
-    _redo.getElement().classes.remove('disabled-todo-button');
+    _redo.removeStyleName('disabled-todo-button');
   }
 
   reactCannotRedo() {
     _redo.enabled = false;
-    _redo.getElement().classes.add('disabled-todo-button');
+    _redo.addStyleName('disabled-todo-button');
   }
 }

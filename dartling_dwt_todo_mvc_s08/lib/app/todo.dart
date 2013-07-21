@@ -1,6 +1,6 @@
 part of todo_mvc_app;
 
-class Todo extends ui.HorizontalPanel {
+class Todo extends ui.Composite {
   Task task;
 
   ui.CheckBox _completed;
@@ -10,8 +10,11 @@ class Todo extends ui.HorizontalPanel {
     DomainSession session = todoApp.session;
     Tasks tasks = todoApp.tasks;
 
-    spacing = 8;
-    getElement().id = 'todo';
+    ui.Grid grid = new ui.Grid(1, 3);
+    grid.setCellSpacing(8);
+    grid.addStyleName('todo');
+    grid.getRowFormatter().setVerticalAlign(0, i18n.HasVerticalAlignment.ALIGN_MIDDLE);
+    initWidget(grid);
 
     _completed = new ui.CheckBox();
     _completed.setValue(task.completed);
@@ -21,11 +24,11 @@ class Todo extends ui.HorizontalPanel {
             !task.completed).doit();
       })
     );
-    add(_completed);
+    grid.setWidget(0, 0, _completed);
 
     _todo = new ui.TextBox();
     _todo.text = task.title;
-    _todo.setSize('560px', '16px');
+    _todo.addStyleName('todo-input');
     _todo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
@@ -47,23 +50,23 @@ class Todo extends ui.HorizontalPanel {
         }
       })
     );
-    add(_todo);
+    grid.setWidget(0, 1, _todo);
 
     ui.Button remove = new ui.Button(
       'x', new event.ClickHandlerAdapter((event.ClickEvent e) {
         new RemoveAction(session, tasks, task).doit();
       })
     );
-    remove.getElement().classes.add('todo-button');
-    add(remove);
+    remove.addStyleName('todo-button');
+    grid.setWidget(0, 2, remove);
   }
 
   complete(bool completed) {
     _completed.setValue(completed);
     if (completed) {
-      _todo.getElement().classes.add('completed');
+      _todo.addStyleName('completed');
     } else {
-      _todo.getElement().classes.remove('completed');
+      _todo.removeStyleName('completed');
     }
   }
 }
