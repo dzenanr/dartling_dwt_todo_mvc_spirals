@@ -33,7 +33,7 @@ class TodoApp {
 
   updateDisplay() {
     header.updateDisplay();
-//    footer.updateDisplay();
+    footer.updateDisplay();
   }
 }
 

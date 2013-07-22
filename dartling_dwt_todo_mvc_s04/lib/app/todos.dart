@@ -6,6 +6,8 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
   Todos(this._todoApp) {
     _todoApp.domain.startActionReaction(this);
     _load(_todoApp.tasks);
+    
+    addStyleName('todos');
   }
 
   _load(Tasks tasks) {

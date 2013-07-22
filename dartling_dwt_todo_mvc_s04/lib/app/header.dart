@@ -36,7 +36,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     hPanel.add(_redo);
 
     var newTodo = new ui.TextBox();
-    newTodo.setSize('648px', '24px');
+    newTodo.addStyleName('todo-input');
     newTodo.addKeyPressHandler(new
         event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
           if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {

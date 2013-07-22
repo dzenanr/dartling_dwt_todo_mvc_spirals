@@ -43,6 +43,7 @@ class Footer extends ui.Composite {
         transaction.doit();
       })
     );
+    _clearCompleted.enabled = false;
     _clearCompleted.addStyleName('todo-button disabled-todo-button');
     grid.setWidget(0, 2, _clearCompleted);
   }
@@ -69,8 +70,10 @@ class Footer extends ui.Composite {
       _updateSelectionDisplay();
 
       if (completedLength == 0) {
+        _clearCompleted.enabled = false;
         _clearCompleted.addStyleName('disabled-todo-button');
       } else {
+        _clearCompleted.enabled = true;
         _clearCompleted.removeStyleName('disabled-todo-button');
       }
       _clearCompleted.text = 'clear completed (${completedLength})';

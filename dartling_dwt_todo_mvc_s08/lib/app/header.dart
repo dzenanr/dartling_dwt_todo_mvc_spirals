@@ -88,7 +88,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
     var newTodo = new ui.TextBox();
     newTodo.addStyleName('todo-input');
-    newTodo.focus = true; // newTodo does not accept keyboard events?
+    newTodo.focus = true;
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
@@ -99,6 +99,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             bool done = new AddAction(session, _tasks, task).doit();
             if (done) {
               newTodo.text = '';
+              _cancelNewTodo.enabled = false;
               _cancelNewTodo.addStyleName('disabled-todo-button');
             } else {
               var e = '';
@@ -110,6 +111,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             }
           }
         } else {
+          _cancelNewTodo.enabled = true;
           _cancelNewTodo.removeStyleName('disabled-todo-button');
         }
       })
@@ -120,8 +122,10 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
       'cancel', new event.ClickHandlerAdapter((event.ClickEvent e) {
         newTodo.text = '';
         _cancelNewTodo.addStyleName('disabled-todo-button');
+        _cancelNewTodo.enabled = false;
       })
     );
+    _cancelNewTodo.enabled = false;
     _cancelNewTodo.addStyleName('todo-button disabled-todo-button');
     newTodoPanel.setWidget(0, 1, _cancelNewTodo);
   }
