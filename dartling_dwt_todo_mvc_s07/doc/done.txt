@@ -32,10 +32,11 @@ Done
      only one is completed; the other is not although its task is completed
      (find todo in Todos finds the first todo with that task.title)
 
++ + continued using Todo MVC css
+
 Not done
 
 - edit todo
 
-- continue using Todo MVC css
 
 

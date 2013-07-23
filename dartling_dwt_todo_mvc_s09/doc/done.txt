@@ -1,0 +1,36 @@
+Done
+
+apply the original Todo MVC css as at http://todomvc.com/
+see http://todomvc.com/architecture-examples/backbone/
+
++ move linkPanel from Header to TodoApp after footer
++ when there are no completed todos, clear completed button becomes invisible
++ cancel button renamed to Clear
++ left in selection is renamed to Active
++ title is todos; all other names start with a capital letter
++ change font size of todos to 18 (original size is 24)
++ footer has a slightly different background color from page
++ todos are lables;
+  when a label is double-clicked a text box is used to retitle todo
+
+
+Not done
+
+- <input id="new-todo" placeholder="What needs to be done?" autofocus> !
+  - how to add placeholder to newTodo (TextBox) in Header?
+  - how to autofocus?
+- how to select text in TextBox by programming?
+- .footer:before in base.css when put in a comment does not change anything!
+- replace complete checkboxes by the check symbol!
+  -- I have tried it without success.
+- add the paper background (image?) to todos?
+- the complete all checkbox symbol should be moved to the left corner of todos?
+- replace selection ListBox by horizontal internal links?
+- a renamed todo should stay in the same place?
+- when clear completed button becomes invisible,
+  other footer elements should not move?
+
+- follow Getting Involved at http://todomvc.com/
+
+
+
