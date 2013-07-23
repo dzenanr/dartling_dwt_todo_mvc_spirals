@@ -24,20 +24,20 @@ Not done
 - <input id="new-todo" placeholder="What needs to be done?" autofocus> !
   - how to add placeholder to newTodo (TextBox) in Header?
   - how to autofocus?
-- how to select text in TextBox by programming?
+  - how to select text in TextBox by programming?
 - .footer:before in base.css when put in a comment does not change anything!
 - replace complete checkboxes by the check symbol!
   -- I have tried it without success.
 - add the paper background (image?) to todos?
 - the complete all checkbox symbol should be moved to the left corner of todos?
-- replace selection ListBox by horizontal internal links?
+- replace selection ListBox by horizontal internal links!
 - a renamed todo should stay in the same place?
 - when clear completed button becomes invisible,
-  other footer elements should not move?
+  other footer elements should not move!
 - replace Clear button by:
   if escape is pressed during the edit,
   the edit state should be left and any changes be discarded!
-- display authors (cannot center it properly!)
+- displayed authors are not centered it properly!
 
 - follow Getting Involved at http://todomvc.com/
 
