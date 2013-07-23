@@ -15,7 +15,7 @@ class TodoApp {
 
     var root = ui.RootPanel.get();
     var todoApp = new ui.VerticalPanel();
-    todoApp.spacing = 8;
+    todoApp.spacing = 16;
     root.add(todoApp);
     header = new Header(this);
     todoApp.add(header);
@@ -29,27 +29,43 @@ class TodoApp {
     var infoPanel = new ui.VerticalPanel();
     infoPanel.addStyleName('info');
     todoApp.add(infoPanel);
-    var todo_edit_info = new ui.Label('Double-click to edit a todo');
-    infoPanel.add(todo_edit_info);
+    infoPanel.add(new ui.Label('Double-click to edit a todo'));
+
     var linkPanel = new ui.HorizontalPanel();
     linkPanel.spacing = 4;
     infoPanel.add(linkPanel);
     var dartling = new ui.Anchor()
-      ..text="dartling"
-      ..href="https://github.com/dzenanr/dartling";
+      ..text='dartling'
+      ..href='https://github.com/dzenanr/dartling';
     linkPanel.add(dartling);
     var dwt = new ui.Anchor()
-      ..text="DWT"
-      ..href="http://dartwebtoolkit.com";
+      ..text='DWT'
+      ..href='http://dartwebtoolkit.com';
     linkPanel.add(dwt);
     var todoMvc = new ui.Anchor()
-      ..text="Todo MVC"
-      ..href="http://todomvc.com";
+      ..text='Todo MVC'
+      ..href='http://todomvc.com';
     linkPanel.add(todoMvc);
+
+    /* cannot center it properly
+    var authorPanel = new ui.HorizontalPanel();
+    authorPanel.spacing = 4;
+    infoPanel.add(authorPanel);
+    authorPanel.add(new ui.Label('Written by '));
+    var dr = new ui.Anchor()
+      ..text='Dzenan Ridjanovic'
+      ..href='https://github.com/dzenanr';
+    authorPanel.add(dr);
+    authorPanel.add(new ui.Label(' and '));
+    var sa = new ui.Anchor()
+      ..text='Sergey Akopkokhyants'
+      ..href='https://github.com/akserg';
+    authorPanel.add(sa);
+    */
   }
 
   save() {
-    window.localStorage['tasks'] = stringify(tasks.toJson());
+    window.localStorage['todos-dartling-dwt'] = stringify(tasks.toJson());
   }
 
   updateDisplay() {

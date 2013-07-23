@@ -11,7 +11,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
   }
 
   _load(Tasks tasks) {
-    String json = window.localStorage['tasks'];
+    String json = window.localStorage['todos-dartling-dwt'];
     if (json != null) {
       tasks.fromJson(parse(json));
       for (Task task in tasks) {
