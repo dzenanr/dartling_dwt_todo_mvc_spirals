@@ -38,6 +38,7 @@ Not done
   if escape is pressed during the edit,
   the edit state should be left and any changes be discarded!
 - displayed authors are not centered it properly!
+- test on Chrome, Firefox, Opera, Safari, IE9
 
 - follow Getting Involved at http://todomvc.com/
 
