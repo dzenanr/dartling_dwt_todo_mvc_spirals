@@ -5,6 +5,7 @@ class Todo extends ui.Composite {
 
   ui.CheckBox _completed;
   ui.Label _todo;
+  ui.Button _remove;
   ui.TextBox _todo_retitle;
 
   Todo(TodoApp todoApp, this.task) {
@@ -33,7 +34,9 @@ class Todo extends ui.Composite {
     _todo.addStyleName('todo');
     _todo.addDoubleClickHandler(
       new event.DoubleClickHandlerAdapter((event.DoubleClickEvent e) {
+        _completed.visible = false;
         _todo.visible = false;
+        _remove.visible = false;
         _todo_retitle = new ui.TextBox();
         _todo_retitle.text = _todo.text;
         _todo_retitle.focus = true;
@@ -66,13 +69,13 @@ class Todo extends ui.Composite {
     );
     grid.setWidget(0, 1, _todo);
 
-    ui.Button remove = new ui.Button(
+    _remove = new ui.Button(
       'X', new event.ClickHandlerAdapter((event.ClickEvent e) {
         new RemoveAction(session, tasks, task).doit();
       })
     );
-    remove.addStyleName('todo-button');
-    grid.setWidget(0, 2, remove);
+    _remove.addStyleName('todo-button remove');
+    grid.setWidget(0, 2, _remove);
   }
 
   complete(bool completed) {

@@ -10,8 +10,12 @@ see http://todomvc.com/architecture-examples/backbone/
 + title is todos; all other names start with a capital letter
 + change font size of todos to 18 (original size is 24)
 + footer has a slightly different background color from page
-+ todos are lables;
-  when a label is double-clicked a text box is used to retitle todo
++ todos are lables
+  ++ when a label is double-clicked a text box is used to retitle todo
+  ++ and the check box and remove button are not displayed
++ use standard name for local storage (todos-dartling-dwt)
++ display authors
++ hovering over the todo shows the remove button
 
 
 Not done
@@ -29,6 +33,7 @@ Not done
 - a renamed todo should stay in the same place?
 - when clear completed button becomes invisible,
   other footer elements should not move?
+- display authors (cannot center it properly!)
 
 - follow Getting Involved at http://todomvc.com/
 

@@ -73,6 +73,14 @@ body {
   width: 560px;
 }
 
+.todo .remove {
+  display: none;
+}
+
+.todo:hover .remove {
+  display: block;
+}
+
 .todo .completed {
   color: #a9a9a9;
   text-decoration: line-through;

@@ -47,7 +47,7 @@ class TodoApp {
       ..href='http://todomvc.com';
     linkPanel.add(todoMvc);
 
-    /* cannot center it properly
+    // cannot center it properly
     var authorPanel = new ui.HorizontalPanel();
     authorPanel.spacing = 4;
     infoPanel.add(authorPanel);
@@ -61,7 +61,6 @@ class TodoApp {
       ..text='Sergey Akopkokhyants'
       ..href='https://github.com/akserg';
     authorPanel.add(sa);
-    */
   }
 
   save() {
