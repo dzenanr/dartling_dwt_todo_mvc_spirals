@@ -1,7 +1,8 @@
 Done
 
 apply the original Todo MVC css as at http://todomvc.com/
-see http://todomvc.com/architecture-examples/backbone/
+demo: http://todomvc.com/architecture-examples/backbone/
+app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 
 + move linkPanel from Header to TodoApp after footer
 + when there are no completed todos, clear completed button becomes invisible
