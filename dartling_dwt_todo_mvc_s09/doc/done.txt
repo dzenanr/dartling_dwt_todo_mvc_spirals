@@ -16,6 +16,7 @@ see http://todomvc.com/architecture-examples/backbone/
 + use standard name for local storage (todos-dartling-dwt)
 + display authors
 + hovering over the todo shows the remove button
++ number of todos left is wrapped by a <strong> tag
 
 
 Not done
@@ -33,6 +34,9 @@ Not done
 - a renamed todo should stay in the same place?
 - when clear completed button becomes invisible,
   other footer elements should not move?
+- replace Clear button by:
+  if escape is pressed during the edit,
+  the edit state should be left and any changes be discarded!
 - display authors (cannot center it properly!)
 
 - follow Getting Involved at http://todomvc.com/

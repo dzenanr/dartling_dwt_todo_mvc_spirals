@@ -4,7 +4,7 @@ class Footer extends ui.Composite {
   Tasks _tasks;
 
   Todos _todos;
-  ui.Label _leftCount;
+  ui.InlineHtml _leftCount;
   ui.ListBox _selection;
   ui.Button _clearCompleted;
 
@@ -21,7 +21,7 @@ class Footer extends ui.Composite {
 
     grid.addStyleName('footer');
 
-    _leftCount = new ui.Label();
+    _leftCount = new ui.InlineHtml();
     grid.setWidget(0, 0, _leftCount);
 
     _selection = new ui.ListBox();
@@ -67,7 +67,7 @@ class Footer extends ui.Composite {
       visible = true;
       var completedLength = _tasks.completed.length;
       var leftLength = _tasks.left.length;
-      _leftCount.text = '${leftLength} todo${leftLength != 1 ? 's' : ''} left';
+      _leftCount.html = '<strong>${leftLength}</strong> todo${leftLength != 1 ? 's' : ''} left';
 
       _updateSelectionDisplay();
 
