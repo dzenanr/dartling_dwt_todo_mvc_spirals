@@ -19,7 +19,7 @@ app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 + hovering over todo shows remove button
 + number of todos left is wrapped by <strong> tag
 
-Problems
+Issues
 
 * base.css: .footer:before when put in a comment does not change anything!
 * when in horizontal panel, displayed authors are not centered properly!
