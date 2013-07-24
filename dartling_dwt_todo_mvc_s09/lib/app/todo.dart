@@ -61,7 +61,9 @@ class Todo extends ui.Composite {
                 }
               }
             } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
-              // ?
+              _completed.visible = true;
+              _todo.visible = true;
+              _todo_retitle.visible = false;
             }
           })
         );
