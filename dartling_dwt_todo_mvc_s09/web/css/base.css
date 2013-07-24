@@ -78,7 +78,7 @@ body {
 }
 
 .todo:hover .remove {
-  display: block;
+  display: inline;
 }
 
 .todo .completed {
@@ -88,7 +88,7 @@ body {
 
 .todo .retitle {
   font-size: 18px;
-  width: 550px;
+  width: 604px;
   height: 16px;
 }
 
@@ -99,7 +99,7 @@ body {
 }
 
 .footer {
-  width: 656px;
+  width: 654px;
   color: #777777;
   background: #eeeeee;
   padding: 0 15px;

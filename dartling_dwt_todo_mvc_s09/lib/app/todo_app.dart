@@ -47,9 +47,9 @@ class TodoApp {
       ..href='http://todomvc.com';
     linkPanel.add(todoMvc);
 
-    // cannot center it properly
-    var authorPanel = new ui.HorizontalPanel();
-    authorPanel.spacing = 4;
+    // cannot center it properly when HorizontalPanel used
+    var authorPanel = new ui.VerticalPanel();
+    authorPanel.spacing = 2;
     infoPanel.add(authorPanel);
     authorPanel.add(new ui.Label('Written by '));
     var dr = new ui.Anchor()

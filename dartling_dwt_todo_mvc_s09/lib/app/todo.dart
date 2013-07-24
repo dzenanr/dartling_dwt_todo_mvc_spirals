@@ -39,7 +39,6 @@ class Todo extends ui.Composite {
         _remove.visible = false;
         _todo_retitle = new ui.TextBox();
         _todo_retitle.text = _todo.text;
-        _todo_retitle.focus = true;
         _todo_retitle.addStyleName('todo retitle');
         _todo_retitle.addKeyPressHandler(new
           event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
@@ -61,6 +60,8 @@ class Todo extends ui.Composite {
                   tasks.errors.clear();
                 }
               }
+            } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
+              // ?
             }
           })
         );

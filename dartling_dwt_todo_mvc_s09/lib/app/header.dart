@@ -72,7 +72,6 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
 
     var newTodo = new ui.TextBox();
     newTodo.addStyleName('todo-input');
-    newTodo.focus = true;
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
@@ -94,6 +93,8 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
               _tasks.errors.clear();
             }
           }
+        } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
+          newTodo.text = '';
         } else {
           _cancelNewTodo.enabled = true;
           _cancelNewTodo.removeStyleName('disabled');
