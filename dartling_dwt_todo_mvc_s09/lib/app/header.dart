@@ -6,7 +6,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
   ui.CheckBox _completeAll;
   ui.Button _undo;
   ui.Button _redo;
-  ui.Button _cancelNewTodo;
+  ui.Button _clearNewTodo;
 
   Header(TodoApp todoApp) {
     DomainSession session = todoApp.session;
@@ -71,6 +71,7 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     add(newTodoPanel);
 
     var newTodo = new ui.TextBox();
+    newTodo.focus = true; // no focus!?
     newTodo.addStyleName('todo-input');
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
@@ -82,8 +83,8 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
             bool done = new AddAction(session, _tasks, task).doit();
             if (done) {
               newTodo.text = '';
-              _cancelNewTodo.enabled = false;
-              _cancelNewTodo.addStyleName('disabled');
+              _clearNewTodo.enabled = false;
+              _clearNewTodo.addStyleName('disabled');
             } else {
               var e = '';
               for (ValidationError ve in _tasks.errors) {
@@ -96,23 +97,24 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
         } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
           newTodo.text = '';
         } else {
-          _cancelNewTodo.enabled = true;
-          _cancelNewTodo.removeStyleName('disabled');
+          _clearNewTodo.enabled = true;
+          _clearNewTodo.removeStyleName('disabled');
         }
       })
     );
     newTodoPanel.setWidget(0, 0, newTodo);
 
-    _cancelNewTodo = new ui.Button(
+    _clearNewTodo = new ui.Button(
       'Clear', new event.ClickHandlerAdapter((event.ClickEvent e) {
         newTodo.text = '';
-        _cancelNewTodo.addStyleName('disabled');
-        _cancelNewTodo.enabled = false;
+        newTodo.focus = true;
+        _clearNewTodo.addStyleName('disabled');
+        _clearNewTodo.enabled = false;
       })
     );
-    _cancelNewTodo.enabled = false;
-    _cancelNewTodo.addStyleName('todo-button disabled');
-    newTodoPanel.setWidget(0, 1, _cancelNewTodo);
+    _clearNewTodo.enabled = false;
+    _clearNewTodo.addStyleName('todo-button disabled');
+    newTodoPanel.setWidget(0, 1, _clearNewTodo);
   }
 
   updateDisplay() {

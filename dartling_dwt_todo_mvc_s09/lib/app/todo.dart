@@ -6,18 +6,18 @@ class Todo extends ui.Composite {
   ui.CheckBox _completed;
   ui.Label _todo;
   ui.Button _remove;
-  ui.TextBox _todo_retitle;
+  ui.Grid _grid;
 
   Todo(TodoApp todoApp, this.task) {
     DomainSession session = todoApp.session;
     Tasks tasks = todoApp.tasks;
 
-    ui.Grid grid = new ui.Grid(1, 3);
-    grid.setCellSpacing(8);
-    grid.addStyleName('todo');
-    grid.getRowFormatter().setVerticalAlign(
+    _grid = new ui.Grid(1, 3);
+    _grid.setCellSpacing(8);
+    _grid.addStyleName('todo');
+    _grid.getRowFormatter().setVerticalAlign(
         0, i18n.HasVerticalAlignment.ALIGN_MIDDLE);
-    initWidget(grid);
+    initWidget(_grid);
 
     _completed = new ui.CheckBox();
     _completed.setValue(task.completed);
@@ -27,7 +27,7 @@ class Todo extends ui.Composite {
           !task.completed).doit();
       })
     );
-    grid.setWidget(0, 0, _completed);
+    _grid.setWidget(0, 0, _completed);
 
     _todo = new ui.Label();
     _todo.text = task.title;
@@ -35,42 +35,38 @@ class Todo extends ui.Composite {
     _todo.addDoubleClickHandler(
       new event.DoubleClickHandlerAdapter((event.DoubleClickEvent e) {
         _completed.visible = false;
-        _todo.visible = false;
         _remove.visible = false;
-        _todo_retitle = new ui.TextBox();
-        _todo_retitle.text = _todo.text;
-        _todo_retitle.addStyleName('todo retitle');
-        _todo_retitle.addKeyPressHandler(new
+        var todo_retitle = new ui.TextBox();
+        todo_retitle.text = _todo.text;
+        todo_retitle.addStyleName('todo retitle');
+        todo_retitle.addKeyPressHandler(new
           event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
             if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
-              var newTitle = _todo_retitle.text.trim();
-              if (newTitle != '') {
-                var removeAction = new RemoveAction(session, tasks, task);
-                var newTaskWithNewTitle =
-                  new Task.withId(task.concept, newTitle);
-                var addAction =
-                  new AddAction(session, tasks, newTaskWithNewTitle);
-                var transaction = new Transaction('update title', session);
-                transaction.add(removeAction);
-                transaction.add(addAction);
-                // The id can be updated by removing and adding a task.
-                bool done = transaction.doit();
-                if (!done) {
-                  _todo_retitle.text = '${task.title}';
-                  tasks.errors.clear();
+              var newTitle = todo_retitle.text.trim();
+              if (newTitle != '' && newTitle.length <= 64) {
+                var otherTask = tasks.firstWhereAttribute('title', newTitle);
+                if (otherTask == null) {
+                  bool done = new SetAttributeAction(
+                      session, task, 'title', newTitle).doit();
+                  if (!done) {
+                    todo_retitle.text = '${task.title}';
+                    tasks.errors.clear();
+                  }
+                } else {
+                  _displayTodo();
                 }
+              } else {
+                _displayTodo();
               }
             } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
-              _completed.visible = true;
-              _todo.visible = true;
-              _todo_retitle.visible = false;
+              _displayTodo();
             }
           })
         );
-        grid.setWidget(0, 1, _todo_retitle);
+        _grid.setWidget(0, 1, todo_retitle);
       })
     );
-    grid.setWidget(0, 1, _todo);
+    _grid.setWidget(0, 1, _todo);
 
     _remove = new ui.Button(
       'X', new event.ClickHandlerAdapter((event.ClickEvent e) {
@@ -78,7 +74,7 @@ class Todo extends ui.Composite {
       })
     );
     _remove.addStyleName('todo-button remove');
-    grid.setWidget(0, 2, _remove);
+    _grid.setWidget(0, 2, _remove);
   }
 
   complete(bool completed) {
@@ -88,5 +84,16 @@ class Todo extends ui.Composite {
     } else {
       _todo.removeStyleName('completed');
     }
+  }
+
+  _displayTodo() {
+    _completed.visible = true;
+    _remove.visible = true;
+    _grid.setWidget(0, 1, _todo);
+  }
+
+  retitle(String title) {
+    _todo.text = title;
+    _displayTodo();
   }
 }

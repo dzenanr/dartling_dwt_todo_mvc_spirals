@@ -79,19 +79,20 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(tasks.errors.toList()[0].category, equals('required'));
       tasks.errors.display(title:'Add Task Required Title Error');
     });
-    test('Add Task Unique Error', () {
+    test('Add Task Pre Validation Unique Title Error', () {
       var title = 'write a blog entry about dartling and DWT';
-      var task = new Task.withId(taskConcept, title);
+      var task = new Task(taskConcept);
+      task.title = title;
       expect(task, isNotNull);
       var added = tasks.add(task);
       expect(added, isTrue);
       added = tasks.add(task);
       expect(added, isFalse);
       expect(tasks.errors.length, equals(1));
-      expect(tasks.errors.toList()[0].category, equals('unique'));
-      tasks.errors.display(title:'Add Task Unique Error');
+      expect(tasks.errors.toList()[0].category, equals('pre'));
+      tasks.errors.display(title:'Add Task Pre Validation Unique Title Error');
     });
-    test('Add Task Pre Validation Error', () {
+    test('Add Task Pre Validation Too Long Error', () {
       var task = new Task(taskConcept);
       expect(task, isNotNull);
       task.title =
@@ -100,7 +101,7 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(added, isFalse);
       expect(tasks.errors, hasLength(1));
       expect(tasks.errors.toList()[0].category, equals('pre'));
-      tasks.errors.display(title:'Add Task Pre Validation Error');
+      tasks.errors.display(title:'Add Task Pre Validation Too Long Error');
     });
 
     test('Find Task by New Oid', () {
@@ -113,28 +114,6 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       var task = tasks.firstWhereAttribute('title', title);
       expect(task, isNotNull);
       expect(task.title, equals(title));
-    });
-    test('Find Task by Id', () {
-      Id id = new Id(taskConcept);
-      expect(id.length, equals(1));
-      var searchTitle = 'design a model';
-      id.setAttribute('title', searchTitle);
-      var task = tasks.singleWhereId(id);
-      expect(task, isNotNull);
-      expect(task.title, equals(searchTitle));
-    });
-    test('Find Task by Attribute Id', () {
-      var searchTitle = 'design a model';
-      var task = tasks.singleWhereAttributeId('title', searchTitle);
-      expect(task, isNotNull);
-      expect(task.title, equals(searchTitle));
-    });
-    test('Find Project by Name Id', () {
-      var searchTitle = 'design a model';
-      // findByTitleId is a specific method
-      var task = tasks.findByTitleId(searchTitle);
-      expect(task, isNotNull);
-      expect(task.title, equals(searchTitle));
     });
     test('Random Task', () {
       var task1 = tasks.random();
@@ -217,44 +196,11 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       task.title = 'writing a tutorial on Dartling';
       tasks.add(task);
       expect(tasks.length, equals(++tasksLength));
-      // The id cannot be updated.
-      expect(() => task.title = 'writing a paper on Dartling', throws);
-    });
-    test('Update New Task Title Id with Success', () {
-      var task = new Task(taskConcept);
-      expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
-      tasks.add(task);
-      expect(tasks.length, equals(++tasksLength));
-      var titleAttribute = task.concept.attributes.singleWhereCode('title');
-      expect(titleAttribute.update, isFalse);
-      titleAttribute.update = true;
-      // The id can be updated but its index is not maintained (not recommended).
-      task.title = 'writing a paper on Dartling';
-      titleAttribute.update = false;
-    });
-    test('Update New Task Title with Success', () {
-      var task = new Task(taskConcept);
-      expect(task, isNotNull);
-      task.title = 'writing a tutorial on Dartling';
-      tasks.add(task);
-      expect(tasks.length, equals(++tasksLength));
 
-      var taskCopy = task.copy();
-      var titleAttribute = task.concept.attributes.singleWhereCode('title');
-      expect(titleAttribute.update, isFalse);
-      titleAttribute.update = true;
-      var newTitle = 'writing a paper on Dartling';
-      taskCopy.title = newTitle;
-      expect(taskCopy.title, equals(newTitle));
-      // The id can be updated and its index is maintained.
-      var updated = tasks.update(task, taskCopy);
-      expect(updated, isTrue);
-      titleAttribute.update = false;
-
-      var dartlingPaper = tasks.singleWhereAttributeId('title', newTitle);
-      expect(dartlingPaper, isNotNull);
-      expect(dartlingPaper.title, equals(newTitle));
+      var copiedTask = task.copy();
+      copiedTask.title = 'writing a paper on Dartling';
+      // Entities.update can only be used if oid, code or id set.
+      expect(() => tasks.update(task, copiedTask), throws);
     });
     test('Update New Task Oid with Success', () {
       var task = new Task(taskConcept);
@@ -282,7 +228,7 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       var task = tasks.firstWhereAttribute('title', title);
       expect(task, isNotNull);
       expect(task.code, isNull);
-      expect(task.id, isNotNull);
+      expect(task.id, isNull);
     });
 
     test('Add Task Undo and Redo', () {
@@ -336,23 +282,16 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(task, isNotNull);
       expect(task.title, equals(title));
 
-      var titleAttribute = task.concept.attributes.singleWhereCode('title');
-      expect(titleAttribute.update, isFalse);
-      titleAttribute.update = true;
-
-      var newTitle = 'generate from model to json';
-      // The id can be updated but its index is not maintained (not recommended).
-      var action = new SetAttributeAction(domainSession, task, 'title', newTitle);
+      var action =
+          new SetAttributeAction(domainSession, task, 'title',
+              'generate from model to json');
       action.doit();
-      expect(action.done, isTrue);
 
       domainSession.past.undo();
       expect(task.title, equals(action.before));
 
       domainSession.past.redo();
       expect(task.title, equals(action.after));
-
-      titleAttribute.update = false;
     });
     test('Undo and Redo Transaction with Two Adds', () {
       var task1 = new Task(taskConcept);
@@ -389,14 +328,14 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
 
       var removeAction = new RemoveAction(domainSession, tasks, task);
       var newTitle = 'generate from model to json';
-      var newTaskWithNewTitle = new Task.withId(task.concept, newTitle);
+      var newTaskWithNewTitle = new Task(task.concept);
+      newTaskWithNewTitle.title = newTitle;
       var addAction = new AddAction(domainSession, tasks, newTaskWithNewTitle);
 
       var count = tasks.count;
       var transaction = new Transaction('update title', domainSession);
       transaction.add(removeAction);
       transaction.add(addAction);
-      // The id can be updated by removing and adding a task with a new id value.
       transaction.doit();
       expect(tasks.count, equals(count));
       expect(transaction.done, isTrue);

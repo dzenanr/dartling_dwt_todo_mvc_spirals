@@ -27,7 +27,7 @@ var todoMvcModelJson = r'''
                     "init":"",
                     "essential":true,
                     "sensitive":false,
-                    "category":"identifier",
+                    "category":"required",
                     "type":"String"
                 },
                 {

@@ -27,13 +27,9 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
   }
 
   Todo _find(Task task) {
-    return _findByTitle(task.title);
-  }
-
-  Todo _findByTitle(String title) {
     for (int i = 0; i < getWidgetCount(); i++) {
       Todo todo = getWidgetAt(i);
-      if (todo.task.title == title) {
+      if (todo.task == task) {
         return todo;
       }
     }
@@ -43,6 +39,13 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
     var todo = _find(task);
     if (todo != null) {
       todo.complete(task.completed);
+    }
+  }
+
+  _retitle(Task task) {
+    var todo = _find(task);
+    if (todo != null) {
+      todo.retitle(task.title);
     }
   }
 
@@ -86,6 +89,8 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
     updateTodo(SetAttributeAction action) {
       if (action.property == 'completed') {
         _complete(action.entity);
+      } else if (action.property == 'title') {
+        _retitle(action.entity);
       }
     }
 
