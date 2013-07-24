@@ -42,18 +42,14 @@ class Todo extends ui.Composite {
         todo_retitle.addKeyPressHandler(new
           event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
             if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
-              var newTitle = todo_retitle.text.trim();
-              if (newTitle != '' && newTitle.length <= 64) {
-                var otherTask = tasks.firstWhereAttribute('title', newTitle);
-                if (otherTask == null) {
-                  bool done = new SetAttributeAction(
-                      session, task, 'title', newTitle).doit();
-                  if (!done) {
-                    todo_retitle.text = '${task.title}';
-                    tasks.errors.clear();
-                  }
-                } else {
-                  _displayTodo();
+              var newTitle = todo_retitle.text;
+              var otherTask = tasks.firstWhereAttribute('title', newTitle);
+              if (otherTask == null) {
+                bool done = new SetAttributeAction(
+                    session, task, 'title', newTitle).doit();
+                if (!done) {
+                  todo_retitle.text = '${task.title}';
+                  tasks.errors.clear();
                 }
               } else {
                 _displayTodo();

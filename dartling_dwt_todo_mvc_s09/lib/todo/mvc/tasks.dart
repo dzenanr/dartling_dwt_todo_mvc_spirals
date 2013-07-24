@@ -20,8 +20,32 @@ class Task extends TaskGen {
   int compareTo(Task other) {
     return title.compareTo(other.title);
   }
-  // end: added by hand
 
+  bool preSetAttribute(String name, Object value) {
+    bool validation = super.preSetAttribute(name, value);
+    if (name == 'title') {
+      String title = value;
+      if (validation) {
+        validation = title.trim() != '';
+        if (!validation) {
+          var error = new ValidationError('pre');
+          error.message = 'The title should not be empty.';
+          errors.add(error);
+        }
+      }
+      if (validation) {
+        validation = title.length <= 64;
+        if (!validation) {
+          var error = new ValidationError('pre');
+          error.message =
+              'The "${title}" title should not be longer than 64 characters.';
+              errors.add(error);
+        }
+      }
+    }
+    return validation;
+  }
+  // end: added by hand
 }
 
 class Tasks extends TasksGen {
@@ -35,26 +59,15 @@ class Tasks extends TasksGen {
   bool preAdd(Task task) {
     bool validation = super.preAdd(task);
     if (validation) {
-      validation = task.title.length <= 64;
-      if (!validation) {
-        var error = new ValidationError('pre');
-        error.message =
-            'The "${task.title}" title should not be longer than 64 characters.';
-        errors.add(error);
-      }
-    }
-    if (validation) {
       var otherTask = firstWhereAttribute('title', task.title);
       validation = otherTask == null;
       if (!validation) {
         var error = new ValidationError('pre');
-        error.message =
-            'The "${task.title}" title should be unique.';
+        error.message = 'The "${task.title}" title already exists.';
         errors.add(error);
       }
     }
     return validation;
   }
   // end: added by hand
-
 }

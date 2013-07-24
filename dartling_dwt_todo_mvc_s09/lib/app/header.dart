@@ -76,23 +76,27 @@ class Header extends ui.VerticalPanel implements PastReactionApi {
     newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {
-          var title = newTodo.text.trim();
-          if (title != '') {
-            var task = new Task(_tasks.concept);
-            task.title = title;
-            bool done = new AddAction(session, _tasks, task).doit();
-            if (done) {
-              newTodo.text = '';
-              _clearNewTodo.enabled = false;
-              _clearNewTodo.addStyleName('disabled');
-            } else {
-              var e = '';
-              for (ValidationError ve in _tasks.errors) {
-                e = '${ve.message} $e';
-              }
-              newTodo.text = '$e';
-              _tasks.errors.clear();
+          var title = newTodo.text;
+          var task = new Task(_tasks.concept);
+          task.title = title;
+          bool done = new AddAction(session, _tasks, task).doit();
+          if (done) {
+            newTodo.text = '';
+            _clearNewTodo.enabled = false;
+            _clearNewTodo.addStyleName('disabled');
+          } else {
+            var e = '';
+            for (ValidationError ve in _tasks.errors) {
+              e = '${ve.message} $e';
             }
+            for (ValidationError ve in task.errors) {
+              e = '${ve.message} $e';
+            }
+            newTodo.text = '$e';
+            _tasks.errors.clear();
+            task.errors.clear();
+            _clearNewTodo.enabled = true;
+            _clearNewTodo.removeStyleName('disabled');
           }
         } else if (e.getNativeKeyCode() == event.KeyCodes.KEY_ESCAPE) {
           newTodo.text = '';

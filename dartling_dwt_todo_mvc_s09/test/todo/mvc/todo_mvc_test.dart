@@ -92,16 +92,55 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
       expect(tasks.errors.toList()[0].category, equals('pre'));
       tasks.errors.display(title:'Add Task Pre Validation Unique Title Error');
     });
-    test('Add Task Pre Validation Too Long Error', () {
+    test('Add Task Pre Validation Empty Title Error', () {
+      var task = new Task(taskConcept);
+      expect(task, isNotNull);
+      task.title = ' ';
+      expect(task.errors, hasLength(1));
+      expect(task.errors.toList()[0].category, equals('pre'));
+      task.errors.display(title:'Set Task Title Pre Validation Empty Error');
+      var added = tasks.add(task);
+      expect(added, isFalse);
+      expect(tasks.errors, hasLength(1));
+      expect(tasks.errors.toList()[0].category, equals('required'));
+      tasks.errors.display(title:'Add Task Pre Validation Empty Title Error');
+    });
+    test('Add Task Pre Validation Too Long Title Error', () {
       var task = new Task(taskConcept);
       expect(task, isNotNull);
       task.title =
           'A new task with a long name, longer than sixty four characters, is not be accepted';
+      expect(task.errors, hasLength(1));
+      expect(task.errors.toList()[0].category, equals('pre'));
+      task.errors.display(title:'Set Task Title Pre Validation Too Long Error');
       var added = tasks.add(task);
       expect(added, isFalse);
       expect(tasks.errors, hasLength(1));
-      expect(tasks.errors.toList()[0].category, equals('pre'));
-      tasks.errors.display(title:'Add Task Pre Validation Too Long Error');
+      expect(tasks.errors.toList()[0].category, equals('required'));
+      tasks.errors.display(title:'Add Task Pre Validation Too Long Title Error');
+    });
+    test('Set Task Title Pre Validation Empty Error', () {
+      var task = new Task(taskConcept);
+      expect(task, isNotNull);
+      task.title = 'abc';
+      var added = tasks.add(task);
+      expect(added, isTrue);
+      task.title = '';
+      expect(task.errors, hasLength(1));
+      expect(task.errors.toList()[0].category, equals('pre'));
+      task.errors.display(title:'Set Task Title Pre Validation Empty Error');
+    });
+    test('Set Task Title Pre Validation Too Long Error', () {
+      var task = new Task(taskConcept);
+      expect(task, isNotNull);
+      task.title = 'abc';
+      var added = tasks.add(task);
+      expect(added, isTrue);
+      task.title =
+          'A new task with a long name, longer than sixty four characters, is not be accepted';
+      expect(task.errors, hasLength(1));
+      expect(task.errors.toList()[0].category, equals('pre'));
+      task.errors.display(title:'Set Task Title Pre Validation Too Long Error');
     });
 
     test('Find Task by New Oid', () {
