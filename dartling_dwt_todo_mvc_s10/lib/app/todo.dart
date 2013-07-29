@@ -24,13 +24,13 @@ class Todo extends ui.Composite {
     // Create new LI element
     _li = new ListItem();
     initWidget(_li);
-    
+
     // FlowPanel based on DIV element
     _view = new ui.FlowPanel();
     _view.addStyleName("view");
     _li.addContent(_view);
-    
-    // Completed CheckBox 
+
+    // Completed CheckBox
     _completed = new CheckBox(new CheckboxInputElement());
     _completed.addStyleName("toggle");
     _completed.setValue(task.completed);
@@ -42,8 +42,8 @@ class Todo extends ui.Composite {
     _view.add(_completed);
     // Mark it attached and remember it for cleanup.
     _attachToRootPanel(_completed);
-    
-    // ToDo label 
+
+    // ToDo label
     _todo = new Label();
     _todo.text = task.title;
     _todo.addDoubleClickHandler(new event.DoubleClickHandlerAdapter((event.DoubleClickEvent e) {
@@ -53,7 +53,7 @@ class Todo extends ui.Composite {
     _view.add(_todo);
     // Mark it attached and remember it for cleanup.
     _attachToRootPanel(_todo);
-    
+
     // Remove button
     _remove = new ui.Button();
     _remove.addStyleName("destroy");
@@ -63,7 +63,7 @@ class Todo extends ui.Composite {
     _view.add(_remove);
     // Mark it attached and remember it for cleanup.
     _attachToRootPanel(_remove);
-    
+
     // Edit TextBox
     _edit = new ui.TextBox();
     _edit.addStyleName("edit");
@@ -77,7 +77,7 @@ class Todo extends ui.Composite {
         }
       })
     );
-    _edit.addBlurHandler(new event.BlurHandlerAdapter((event.BlurEvent evt){
+    _edit.addBlurHandler(new event.BlurHandlerAdapter((event.BlurEvent evt) {
       _updateTodo(session, tasks);
     }));
     _li.addContent(_edit);
@@ -102,7 +102,7 @@ class Todo extends ui.Composite {
       _displayTodo();
     }
   }
-  
+
   /**
    * Change LI style depends on task [completed] status.
    */
@@ -130,9 +130,9 @@ class Todo extends ui.Composite {
     _edit.setValue(title);
     _displayTodo();
   }
-  
+
   /**
-   * Mark [widget] attached to RootPanel and remember it for cleanup. 
+   * Mark [widget] attached to RootPanel and remember it for cleanup.
    */
   void _attachToRootPanel(ui.Widget widget) {
     widget.onAttach();

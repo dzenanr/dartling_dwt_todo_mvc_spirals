@@ -5,8 +5,8 @@ part of todo_mvc_app;
  */
 class Footer extends ui.Composite {
   Tasks _tasks;
+
   Todos _todos;
-  
   ui.HtmlPanel _footer;
   ui.InlineHtml _leftCount;
   ui.ListBox _selection;
@@ -18,14 +18,14 @@ class Footer extends ui.Composite {
   Footer(TodoApp todoApp, this._todos) {
     DomainSession session = todoApp.session;
     _tasks = todoApp.tasks;
-    
+
     // Get #footer from page
     _footer = new ui.HtmlPanel.wrap(query("#footer"));
     initWidget(_footer);
-    
+
     // Get #todo-count from page
     _leftCount = new ui.InlineHtml.wrap(query("#todo-count"));
-    
+
     // Get #clear-completed from page
     _clearCompleted = new ui.Button.wrap(query("#clear-completed"));
     _clearCompleted.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent e) {
@@ -36,7 +36,7 @@ class Footer extends ui.Composite {
         }
         transaction.doit();
       }));
-    
+
     // Add History event handler
     ui.History.addValueChangeHandler(new event.ValueChangeHandlerAdapter((event.ValueChangeEvent evt){
       _updateSelectionDisplay();
@@ -61,13 +61,13 @@ class Footer extends ui.Composite {
   }
 
   /**
-   * Select active navigation element based on [token]. 
+   * Select active navigation element based on [token].
    */
   void _selectNavigation(String token) {
     List<AnchorElement> anchors = queryAll("#filters li a");
     if (anchors != null) {
       anchors.forEach((AnchorElement anchor){
-        ui.Anchor a = new ui.Anchor.wrap(anchor); 
+        ui.Anchor a = new ui.Anchor.wrap(anchor);
         if (a.href.endsWith(token)) {
           a.addStyleName("selected");
         } else {
@@ -76,7 +76,7 @@ class Footer extends ui.Composite {
       });
     }
   }
-  
+
   /**
    * Update information in all corresponding elements on page.
    */

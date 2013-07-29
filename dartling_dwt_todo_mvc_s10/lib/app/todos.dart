@@ -5,6 +5,7 @@ part of todo_mvc_app;
  */
 class Todos extends ui.Composite implements ActionReactionApi {
   TodoApp _todoApp;
+
   UnorderedList _todoList;
 
   /**

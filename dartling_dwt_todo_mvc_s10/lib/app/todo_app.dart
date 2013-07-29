@@ -15,7 +15,6 @@ class TodoApp {
    * Create new instance of [TodoApp].
    */
   TodoApp(this.domain) {
-    
     session = domain.newSession();
     MvcEntries model = domain.getModelEntries('Mvc');
     tasks = model.tasks;
@@ -23,9 +22,8 @@ class TodoApp {
     header = new Header(this);
     Todos todos = new Todos(this);
     footer = new Footer(this, todos);
-    
-    updateDisplay();
 
+    updateDisplay();
   }
 
   /**
