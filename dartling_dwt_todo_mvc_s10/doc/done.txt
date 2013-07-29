@@ -1,0 +1,52 @@
+Done
+
+apply the original Todo MVC css as at http://todomvc.com/
+demo: http://todomvc.com/architecture-examples/backbone/
+app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
+
++ move linkPanel from Header to TodoApp after footer
++ when there are no completed todos, clear completed button becomes invisible
++ cancel button renamed to Clear
++ left in selection is renamed to Active
++ title is todos; all other names start with capital letter
++ change font size of todos to 18 (original size is 24)
++ footer gets slightly different background color from page
++ todos are lables
+  ++ when label is double-clicked text box is used to retitle todo
+  ++ and check box and remove button are not displayed
++ use standard name for local storage (todos-dartling-dwt)
++ display authors
++ hovering over todo shows remove button
++ number of todos left is wrapped by <strong> tag
++ renamed todo stays in the same place
+  (id removed from the model; specific model updated; tests updated)
+
+Issues
+
+* base.css: .footer:before when put in a comment does not change anything!
+* when in horizontal panel, displayed authors are not centered properly!
+* if escape is pressed during new todo (header.dart) or
+  edit todo (todo.dart), changes are not discarded
+  (KEY_ESCAPE event does not happen)!
+* when clear completed button becomes invisible, footer elements move!
+* when not hovering over todos, border changes width!
+* replace complete checkboxes by check symbol
+  (I have tried it without success)!
+
+Not done
+
+- <input id="new-todo" placeholder="What needs to be done?" autofocus> !
+  - how to add placeholder to newTodo (TextBox) in Header?
+  - how to autofocus?
+  - how to select text in TextBox by programming?
+- replace selection ListBox by horizontal links!
+
+- add paper background (image?) to todos?
+  -- complete all checkbox symbol should be moved to left corner of todos?
+
+- test on Chrome, Firefox, Opera, Safari, IE9!
+
+- follow Getting Involved at http://todomvc.com/
+
+
+
