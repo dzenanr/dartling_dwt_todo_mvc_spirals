@@ -2,7 +2,7 @@
 packages
 pubspec.lock
 *.js
-!*/base.js #except for base.js
+!*/web/js/base.js #except for base.js
 *.js.deps
 *.js.map
 *~
