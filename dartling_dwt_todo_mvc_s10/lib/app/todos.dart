@@ -5,15 +5,15 @@ part of todo_mvc_app;
  */
 class Todos extends ui.Composite implements ActionReactionApi {
   TodoApp _todoApp;
-  UnorderedList todoList;
+  UnorderedList _todoList;
 
   /**
    * Create new instance of [Todos].
    */
   Todos(this._todoApp) {
-    todoList = new UnorderedList.wrap(query("#todo-list"));
-    initWidget(todoList);
-    //
+    _todoList = new UnorderedList.wrap(query("#todo-list"));
+    initWidget(_todoList);
+
     _todoApp.domain.startActionReaction(this);
     _load(_todoApp.tasks);
   }
@@ -40,15 +40,15 @@ class Todos extends ui.Composite implements ActionReactionApi {
   _add(Task task) {
     var todo = new Todo(_todoApp, task);
     todo.complete(task.completed);
-    todoList.addItem(todo);
+    _todoList.addItem(todo);
   }
 
   /**
    * Find [task] between Todo components and return as Todo class instance.
    */
   Todo _find(Task task) {
-    for (int i = 0; i < todoList.getWidgetCount(); i++) {
-      Todo todo = todoList.getWidgetAt(i);
+    for (int i = 0; i < _todoList.getWidgetCount(); i++) {
+      Todo todo = _todoList.getWidgetAt(i);
       if (todo.task == task) {
         return todo;
       }
@@ -81,7 +81,7 @@ class Todos extends ui.Composite implements ActionReactionApi {
   _remove(Task task) {
     var todo = _find(task);
     if (todo != null) {
-      todoList.remove(todo);
+      _todoList.remove(todo);
     }
   }
 
@@ -89,8 +89,8 @@ class Todos extends ui.Composite implements ActionReactionApi {
    * Display all Todo components.
    */
   displayAll() {
-    for (int i = 0; i < todoList.getWidgetCount(); i++) {
-      Todo todo = todoList.getWidgetAt(i);
+    for (int i = 0; i < _todoList.getWidgetCount(); i++) {
+      Todo todo = _todoList.getWidgetAt(i);
       todo.visible = true;
     }
   }
@@ -99,8 +99,8 @@ class Todos extends ui.Composite implements ActionReactionApi {
    * Display only left Todos.
    */
   displayLeft() {
-    for (int i = 0; i < todoList.getWidgetCount(); i++) {
-      Todo todo = todoList.getWidgetAt(i);
+    for (int i = 0; i < _todoList.getWidgetCount(); i++) {
+      Todo todo = _todoList.getWidgetAt(i);
       if (todo.task.left) {
         todo.visible = true;
       } else {
@@ -113,8 +113,8 @@ class Todos extends ui.Composite implements ActionReactionApi {
    * Display only completed Todos.
    */
   displayCompleted() {
-    for (int i = 0; i < todoList.getWidgetCount(); i++) {
-      Todo todo = todoList.getWidgetAt(i);
+    for (int i = 0; i < _todoList.getWidgetCount(); i++) {
+      Todo todo = _todoList.getWidgetAt(i);
       if (todo.task.completed) {
         todo.visible = true;
       } else {

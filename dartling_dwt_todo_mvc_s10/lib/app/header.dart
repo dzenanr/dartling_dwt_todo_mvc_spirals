@@ -3,50 +3,30 @@ part of todo_mvc_app;
 /**
  * Header composite component
  */
-class Header extends ui.Composite implements PastReactionApi {
+class Header extends ui.Composite {
   Tasks _tasks;
-
   DomainSession _session;
+
   ui.SimpleCheckBox _completeAll;
-//  ui.Button _undo;
-//  ui.Button _redo;
-  
   ui.HtmlPanel _header;
   ui.TextBox _newTodo;
-	
+
 	/**
 	 * Create new instance of [Header].
 	 */
   Header(TodoApp todoApp) {
     _session = todoApp.session;
-    _session.past.startPastReaction(this);
     _tasks = todoApp.tasks;
 
     // Get #header from page
     _header = new ui.HtmlPanel.wrap(query("#header"));
     initWidget(_header);
-    
+
     // Get #toggle-all checkbox from page
     _completeAll = new ui.SimpleCheckBox.wrap(query("#toggle-all"));
     updateDisplay();
     _completeAll.addClickHandler(new event.ClickHandlerAdapter(_completeAllHandler));
     _completeAll.addKeyPressHandler(new event.KeyPressHandlerAdapter(_completeAllHandler));
-    
-    // Get #undo button from page
-//    _undo = new ui.Button.fromElement(query("undo"));
-//    _undo.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent e) {
-//        _session.past.undo();
-//      }));
-//    _undo.enabled = false;
-//    _undo.addStyleName('todo-button disabled');
-//
-//    // Get #undo button from page
-//    _redo = new ui.Button.fromElement(query("redo"));
-//    _redo.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent e) {
-//        _session.past.redo();
-//      }));
-//    _redo.enabled = false;
-//    _redo.addStyleName('todo-button disabled');
 
     // Get #new-todo imput from page
     _newTodo = new ui.TextBox.wrap(query("#new-todo"));
@@ -96,26 +76,6 @@ class Header extends ui.Composite implements PastReactionApi {
     }
   }
 
-  reactCannotUndo() {
-//    _undo.enabled = false;
-//    _undo.addStyleName('disabled');
-  }
-
-  reactCanUndo() {
-//    _undo.enabled = true;
-//    _undo.removeStyleName('disabled');
-  }
-
-  reactCanRedo() {
-//    _redo.enabled = true;
-//    _redo.removeStyleName('disabled');
-  }
-
-  reactCannotRedo() {
-//    _redo.enabled = false;
-//    _redo.addStyleName('disabled');
-  }
-  
   /**
    * Toggel button click and key press handler.
    */
