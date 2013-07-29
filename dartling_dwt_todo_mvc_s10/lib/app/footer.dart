@@ -86,7 +86,7 @@ class Footer extends ui.Composite {
       _footer.visible = true;
       var completedLength = _tasks.completed.length;
       var leftLength = _tasks.left.length;
-      _leftCount.html = '<strong>${leftLength}</strong> todo${leftLength != 1 ? 's' : ''} left';
+      _leftCount.html = '<strong>${leftLength}</strong> item${leftLength != 1 ? 's' : ''} left';
 
       _updateSelectionDisplay();
 
