@@ -1,5 +1,6 @@
 To Do
 
+- apply the original Todo MVC css as at http://todomvc.com/
 
 
 

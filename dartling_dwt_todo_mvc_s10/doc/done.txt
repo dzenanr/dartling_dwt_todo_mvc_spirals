@@ -4,31 +4,40 @@ apply the original Todo MVC css as at http://todomvc.com/
 demo: http://todomvc.com/architecture-examples/backbone/
 app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 
-+ move linkPanel from Header to TodoApp after footer
-+ when there are no completed todos, clear completed button becomes invisible
-+ cancel button renamed to Clear
-+ left in selection is renamed to Active
-+ title is todos; all other names start with capital letter
-+ change font size of todos to 18 (original size is 24)
-+ footer gets slightly different background color from page
-+ todos are lables
-  ++ when label is double-clicked text box is used to retitle todo
-  ++ and check box and remove button are not displayed
-+ use standard name for local storage (todos-dartling-dwt)
-+ display authors
-+ hovering over todo shows remove button
-+ number of todos left is wrapped by <strong> tag
-+ renamed todo stays in the same place
-  (id removed from the model; specific model updated; tests updated)
 + use elements in html page
 + replace complete checkboxes by check symbol
 + replace selection ListBox by horizontal links
 + add paper background to todos
-+ update .gitignore to include base.js
++ update .gitignore to include base.js (does not work)
+
+Tested
+
+Dart
+Windows/Dartium:
+  OK
+
+JavaScript
+Windows/Chrome 28.0
+  OK
+Windows/Opera 15.0
+  OK
+Windows/Firefox 22.0
+  no symbol for completed (checkbox only)
+Windows/Safari 5.1.7
+  no placeholder (input text stays after enter)
+  footer display for Clear completed does not change
+  no local storage
+Windows/IE 10.0
+  no symbol for completed (checkbox only)
+  no placeholder (input text stays after enter)
+  footer display does not change
+  Clear completed does not function
+  All Active Completed links do not function
+  no local storage
 
 Not done
 
-- test on Chrome, Firefox, Opera, Safari, IE9!
+- test on Ubuntu
 
 - follow Getting Involved at http://todomvc.com/
 
