@@ -163,6 +163,7 @@ label[for='toggle-all'] {
 }
 
 #toggle-all:before {
+	/* content: 'Â»'; */
 	content: '»';
 	font-size: 28px;
 	color: #d9d9d9;
@@ -223,6 +224,7 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .toggle:after {
+	/* content: 'âœ”'; */
 	content: '✔';
 	line-height: 43px; /* 40 + a couple of pixels visual adjustment */
 	font-size: 20px;
@@ -284,6 +286,7 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy:after {
+	/* content: 'âœ–'; */
 	content: '✖';
 }
 
