@@ -1,5 +1,24 @@
 To Do
 
+Tried to exclude base.js from gitignore by using
+
+!*/web/js/base.js
+
+based on
+
+http://stackoverflow.com/questions/3203228/git-ignore-exception
+
+However, the base.js file does not appear at GitHub.
+
+----------﻿
+
+There are only 2 differences with the standard application
+http://todomvc.com/architecture-examples/backbone/ :
+
+1. links are not always underlined as they are in the standard application;
+2. the x button has a background and a border in addition to x,
+   while it is only x in the standard application.
+
 
 
 

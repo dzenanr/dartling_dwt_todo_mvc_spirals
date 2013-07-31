@@ -10,7 +10,9 @@ app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 + add paper background to todos
 + update .gitignore to include base.js (does not work)
 
-Tested
+Tested by Dzenan
+
+I tested everything on Windows 7 x 64.
 
 Dart
 Windows/Dartium:
@@ -27,13 +29,51 @@ Windows/Safari 5.1.7
   no placeholder (input text stays after enter)
   footer display for Clear completed does not change
   no local storage
-Windows/IE 10.0
+Windows/IE 10.0 - 10.0.9200.16635
   no symbol for completed (checkbox only)
   no placeholder (input text stays after enter)
   footer display does not change
   Clear completed does not function
   All Active Completed links do not function
-  no local storage
+  no local storage (when close and open IE)
+  local storage (only the last task is saved when the page is refreshed)
+
+tested by Sergey
+
+I tested everything on Windows 7 x 64.
+I compared Java Script test results to GWT example from TodoMVC.com.
+
+Dart
+Windows/Dartium:
+  OK
+
+JavaScript
+Windows/Chrome 28.0
+  OK
+Windows/Opera 15.0
+  OK
+Windows/Firefox 22.0
+  no symbol for completed (checkbox only) - GWT example looks the same - ok
+Windows/Safari 5.1.7
+  no placeholder (input text stays after enter) - the same - problem
+  footer display for Clear completed does not change - the same - problem
+  no local storage - the same - problem
+Windows/IE 10.0 - 10.0.9200.16635
+  no symbol for completed (checkbox only) - GWT example looks the same - ok
+  no placeholder (input text stays after enter)
+  - input text empty as in GWT example - ok
+  footer display does not change - all works fine - ok
+  Clear completed does not function - all works fine - ok
+  All Active Completed links do not function - all works fine - ok
+  no local storage - all works fine - ok
+
+Summarizing of that only Windows/Safari doesn't work
+- behavior and L&F on other web browsers the same:
+
+Windows/Safari 5.1.7
+  no placeholder (input text stays after enter)
+  footer display for Clear completed does not change
+  no local storage﻿
 
 Not done
 
