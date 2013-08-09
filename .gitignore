@@ -1,8 +1,5 @@
 .DS_Store
 packages
 pubspec.lock
-*.js
-!*/web/js/base.js #except for base.js
 *.js.deps
 *.js.map
-*~
