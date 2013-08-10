@@ -10,9 +10,7 @@ app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 + add paper background to todos
 + update .gitignore to include base.js (does not work)
 
-Tested by Dzenan
-
-I tested everything on Windows 7 x 64.
+Tested by Dzenan on Windows 7 x 64
 
 Dart
 Windows/Dartium:
@@ -38,7 +36,33 @@ Windows/IE 10.0 - 10.0.9200.16635
   no local storage (when close and open IE)
   local storage (only the last task is saved when the page is refreshed)
 
-tested by Sergey
+Tested by Dzenan on Ubuntu 13.04
+
+Dart
+Windows/Dartium:
+  OK
+
+JavaScript
+Windows/Chrome 28.0
+  OK
+Windows/Opera 15.0
+  OK
+Windows/Firefox 22.0
+  no symbol for completed (checkbox only)
+Windows/Safari 5.1.7
+  no placeholder (input text stays after enter)
+  footer display for Clear completed does not change
+  no local storage
+Windows/IE 10.0 - 10.0.9200.16635
+  no symbol for completed (checkbox only)
+  no placeholder (input text stays after enter)
+  footer display does not change
+  Clear completed does not function
+  All Active Completed links do not function
+  no local storage (when close and open IE)
+  local storage (only the last task is saved when the page is refreshed)
+
+Tested by Sergey
 
 I tested everything on Windows 7 x 64.
 I compared Java Script test results to GWT example from TodoMVC.com.
