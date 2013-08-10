@@ -10,9 +10,7 @@ app spec: https://github.com/tastejs/todomvc/wiki/App-Specification
 + add paper background to todos
 + update .gitignore to include base.js (does not work)
 
-Tested by Dzenan
-
-I tested everything on Windows 7 x 64.
+Tested by Dzenan on Windows 7 x 64
 
 Dart
 Windows/Dartium:
@@ -29,7 +27,7 @@ Windows/Safari 5.1.7
   no placeholder (input text stays after enter)
   footer display for Clear completed does not change
   no local storage
-Windows/IE 10.0 - 10.0.9200.16635
+Windows/IE 10.0 - 10.0.9200.16635 from file system
   no symbol for completed (checkbox only)
   no placeholder (input text stays after enter)
   footer display does not change
@@ -37,8 +35,26 @@ Windows/IE 10.0 - 10.0.9200.16635
   All Active Completed links do not function
   no local storage (when close and open IE)
   local storage (only the last task is saved when the page is refreshed)
+Windows/IE 10.0 - 10.0.9200.16635 as default browser
+  no symbol for completed (checkbox only)
 
-tested by Sergey
+Tested by Dzenan on Ubuntu 13.04
+
+Dart
+Ubuntu/Dartium:
+  OK
+
+JavaScript
+Ubuntu/Chrome 28.0
+  OK
+Ubuntu/Firefox 23.0
+  no symbol for completed (checkbox only)
+Ubuntu/Opera
+  could not install
+Ubuntu/Safari 5.1.7
+  could not install
+
+Tested by Sergey
 
 I tested everything on Windows 7 x 64.
 I compared Java Script test results to GWT example from TodoMVC.com.
@@ -73,11 +89,34 @@ Summarizing of that only Windows/Safari doesn't work
 Windows/Safari 5.1.7
   no placeholder (input text stays after enter)
   footer display for Clear completed does not change
-  no local storage﻿
+  no local storage
+
+2013-08-09 by Sergey
+
+Environment and conditions
+1. I checked our code in IE 9 under Windows 7 x 32.
+2. I have compared our application and Todo GWT example and found
+   that our code works better and much stable.
+3. I installed Apache web server and pointed server Document Root option of
+   httpd.conf to web folder of Spiral 10.
+4. I added 'base.js' and 'ie.js' into the repository and updated '.gitignore'
+   file
+
+So what I found is that:
+1. Java Script fails in two places when read/write window.localStorage because
+   IE 9 and 10 don't support localStorage for local files.
+   Not in any official documentation that I can find,
+   but the same issue is described in this blog:
+   http://www.wintellect.com/blogs/jprosise/using-html5-web-storage-for-interprocess-communication
+2. HTML5 introduced the placeholder attribute on input elements,
+   which allows to display a greyed-out default text.
+   Sadly the Internet Explorer 9 does not support it.
+
+Please set IE 10 as default web browser, select 'dartling_dwt_todo_mvc.html'
+from web folder and "Run as JavaScript" from context menu.
+You may open "F12 developer tools" of IE and check what's happens in console.﻿
 
 Not done
-
-- test on Ubuntu
 
 - follow Getting Involved at http://todomvc.com/
 

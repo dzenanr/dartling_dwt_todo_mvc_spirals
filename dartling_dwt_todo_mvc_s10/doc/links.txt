@@ -1,3 +1,11 @@
 Links
 
+Bower
+
+https://github.com/bower/bower
+http://net.tutsplus.com/tutorials/tools-and-tips/meet-bower-a-package-manager-for-the-web/
+
+Contact Manager (another type of standard app)
+
 http://tamaspiros.co.uk/2013/07/18/contact-manager-2-0/
+
