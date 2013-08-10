@@ -1,6 +1,6 @@
 name: dartling_dwt_todo_mvc
 version: 0.1.0
-author: Dzenan Ridjanovic <dzenanr@gmail.com>
+author: Dzenan Ridjanovic & Sergey Akopkokhyants
 description: "Todo.Mvc done with dartling and DWT. \r\ndartling is a domain model\
   \ framework. DWT is a web framework."
 homepage: http://ondart.me/
