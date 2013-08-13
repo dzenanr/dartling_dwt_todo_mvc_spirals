@@ -27,7 +27,7 @@ Windows/Safari 5.1.7
   no placeholder (input text stays after enter)
   footer display for Clear completed does not change
   no local storage
-Windows/IE 10.0 - 10.0.9200.16635
+Windows/IE 10.0 - 10.0.9200.16635 from file system
   no symbol for completed (checkbox only)
   no placeholder (input text stays after enter)
   footer display does not change
@@ -35,6 +35,8 @@ Windows/IE 10.0 - 10.0.9200.16635
   All Active Completed links do not function
   no local storage (when close and open IE)
   local storage (only the last task is saved when the page is refreshed)
+Windows/IE 10.0 - 10.0.9200.16635 as default browser
+  no symbol for completed (checkbox only)
 
 Tested by Dzenan on Ubuntu 13.04
 
