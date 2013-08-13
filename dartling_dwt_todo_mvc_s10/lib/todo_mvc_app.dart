@@ -36,7 +36,6 @@ library todo_mvc_app;
 
 import "dart:json";
 import "dart:html";
-import "dart:math";
 
 import 'package:dartling/dartling.dart';
 
@@ -47,7 +46,7 @@ import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/event.dart' as event;
 import 'package:dart_web_toolkit/i18n.dart' as i18n;
 
-// SDK source code 
+// SDK source code
 part 'sdk/unordered_list.dart';
 part 'sdk/label.dart';
 part 'sdk/check_box.dart';

@@ -6,6 +6,9 @@ class Task extends TaskGen {
 
   Task(Concept concept) : super(concept);
 
+  Task.withId(Concept concept, String title) :
+    super.withId(concept, title);
+
   // begin: added by hand
   bool get left => !completed;
   bool get generate =>
@@ -55,19 +58,5 @@ class Tasks extends TasksGen {
   // begin: added by hand
   Tasks get completed => selectWhere((task) => task.completed);
   Tasks get left => selectWhere((task) => task.left);
-
-  bool preAdd(Task task) {
-    bool validation = super.preAdd(task);
-    if (validation) {
-      var otherTask = firstWhereAttribute('title', task.title);
-      validation = otherTask == null;
-      if (!validation) {
-        var error = new ValidationError('pre');
-        error.message = 'The "${task.title}" title already exists.';
-        errors.add(error);
-      }
-    }
-    return validation;
-  }
   // end: added by hand
 }

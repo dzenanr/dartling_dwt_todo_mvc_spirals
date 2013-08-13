@@ -6,10 +6,6 @@ abstract class TaskGen extends ConceptEntity<Task> {
 
   TaskGen(Concept concept) : super.of(concept);
 
-  TaskGen.withId(Concept concept, String title) : super.of(concept) {
-    setAttribute("title", title);
-  }
-
   String get title => getAttribute("title");
   set title(String a) => setAttribute("title", a);
 
