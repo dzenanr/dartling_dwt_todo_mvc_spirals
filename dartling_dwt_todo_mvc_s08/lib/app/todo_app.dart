@@ -28,7 +28,7 @@ class TodoApp {
   }
 
   save() {
-    window.localStorage['tasks'] = stringify(tasks.toJson());
+    window.localStorage['tasks'] = JSON.encode(tasks.toJson());
   }
 
   updateDisplay() {

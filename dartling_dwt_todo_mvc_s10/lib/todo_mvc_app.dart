@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 library todo_mvc_app;
 
-import "dart:json";
+import "dart:convert";
 import "dart:html";
 
 import 'package:dartling/dartling.dart';
@@ -44,7 +44,7 @@ import 'package:dartling_dwt_todo_mvc/todo_mvc.dart';
 // added by hand
 import 'package:dart_web_toolkit/ui.dart' as ui;
 import 'package:dart_web_toolkit/event.dart' as event;
-import 'package:dart_web_toolkit/i18n.dart' as i18n;
+//import 'package:dart_web_toolkit/i18n.dart' as i18n;
 
 // SDK source code
 part 'sdk/unordered_list.dart';

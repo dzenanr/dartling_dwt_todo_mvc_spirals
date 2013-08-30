@@ -64,7 +64,7 @@ class TodoApp {
   }
 
   save() {
-    window.localStorage['todos-dartling-dwt'] = stringify(tasks.toJson());
+    window.localStorage['todos-dartling-dwt'] = JSON.encode(tasks.toJson());
   }
 
   updateDisplay() {

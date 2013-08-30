@@ -32,7 +32,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
     //load tasks
     String json = window.localStorage['todos'];
     if (json != null) {
-      tasks.fromJson(parse(json));
+      tasks.fromJson(JSON.decode(json));
       for (Task task in tasks) {
         _add(task);
       }

@@ -26,7 +26,7 @@ class Todos extends ui.Composite implements ActionReactionApi {
     String json = window.localStorage['todos-dartling-dwt'];
     if (json != null) {
       try {
-        tasks.fromJson(parse(json));
+        tasks.fromJson(JSON.decode(json));
         for (Task task in tasks) {
           _add(task);
         }
