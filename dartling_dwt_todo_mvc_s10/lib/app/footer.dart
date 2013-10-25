@@ -20,14 +20,14 @@ class Footer extends ui.Composite {
     _tasks = todoApp.tasks;
 
     // Get #footer from page
-    _footer = new ui.HtmlPanel.wrap(query("#footer"));
+    _footer = new ui.HtmlPanel.wrap(querySelector("#footer"));
     initWidget(_footer);
 
     // Get #todo-count from page
-    _leftCount = new ui.InlineHtml.wrap(query("#todo-count"));
+    _leftCount = new ui.InlineHtml.wrap(querySelector("#todo-count"));
 
     // Get #clear-completed from page
-    _clearCompleted = new ui.Button.wrap(query("#clear-completed"));
+    _clearCompleted = new ui.Button.wrap(querySelector("#clear-completed"));
     _clearCompleted.addClickHandler(new event.ClickHandlerAdapter((event.ClickEvent e) {
         var transaction = new Transaction('clear-completed', session);
         for (Task task in _tasks.completed) {

@@ -19,17 +19,17 @@ class Header extends ui.Composite {
     _tasks = todoApp.tasks;
 
     // Get #header from page
-    _header = new ui.HtmlPanel.wrap(query("#header"));
+    _header = new ui.HtmlPanel.wrap(querySelector("#header"));
     initWidget(_header);
 
     // Get #toggle-all checkbox from page
-    _completeAll = new ui.SimpleCheckBox.wrap(query("#toggle-all"));
+    _completeAll = new ui.SimpleCheckBox.wrap(querySelector("#toggle-all"));
     updateDisplay();
     _completeAll.addClickHandler(new event.ClickHandlerAdapter(_completeAllHandler));
     _completeAll.addKeyPressHandler(new event.KeyPressHandlerAdapter(_completeAllHandler));
 
     // Get #new-todo imput from page
-    _newTodo = new ui.TextBox.wrap(query("#new-todo"));
+    _newTodo = new ui.TextBox.wrap(querySelector("#new-todo"));
     _newTodo.addKeyPressHandler(new
       event.KeyPressHandlerAdapter((event.KeyPressEvent e) {
         if (e.getNativeKeyCode() == event.KeyCodes.KEY_ENTER) {

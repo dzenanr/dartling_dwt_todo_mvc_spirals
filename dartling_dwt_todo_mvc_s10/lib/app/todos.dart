@@ -12,7 +12,7 @@ class Todos extends ui.Composite implements ActionReactionApi {
    * Create new instance of [Todos].
    */
   Todos(this._todoApp) {
-    _todoList = new UnorderedList.wrap(query("#todo-list"));
+    _todoList = new UnorderedList.wrap(querySelector("#todo-list"));
     initWidget(_todoList);
 
     _todoApp.domain.startActionReaction(this);
