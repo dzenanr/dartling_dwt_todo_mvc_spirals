@@ -61,9 +61,9 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
       }
     } else if (action is AddAction) {
       if (action.undone) {
-        _remove((action as AddAction).entity);
+        _remove(action.entity);
       } else {
-        _add((action as AddAction).entity);
+        _add(action.entity);
       }
     } else if (action is RemoveAction) {
       if (action.undone) {

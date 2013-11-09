@@ -64,7 +64,7 @@ class Footer extends ui.Composite {
    * Select active navigation element based on [token].
    */
   void _selectNavigation(String token) {
-    List<AnchorElement> anchors = queryAll("#filters li a");
+    List<AnchorElement> anchors = querySelectorAll("#filters li a");
     if (anchors != null) {
       anchors.forEach((AnchorElement anchor){
         ui.Anchor a = new ui.Anchor.wrap(anchor);

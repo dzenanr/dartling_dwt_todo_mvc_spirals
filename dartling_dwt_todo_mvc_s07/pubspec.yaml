@@ -4,10 +4,11 @@ author: Dzenan Ridjanovic <dzenanr@gmail.com>
 description: "Todo.Mvc done with dartling and DWT. \nBased on TodoMVC in Dart. \n\
   dartling is a domain model framework. DWT is a web framework."
 homepage: http://ondart.me/
+documentation: http://goo.gl/Fd08zZ
+environment:
+  sdk: '>=0.8.10+8 <2.0.0'
 dependencies:
-  browser: any
-  dart_web_toolkit: '>=0.3.17+1'
-  dartling:
-    git: git://github.com/dzenanr/dartling.git
-  dartling_default_app:
-    git: git://github.com/dzenanr/dartling_default_app.git
+  browser: '>=0.9.0 <0.10.0'
+  dart_web_toolkit: '>=0.3.25'
+  dartling: '>=1.0.1 <2.0.0'
+  dartling_default_app: '>=1.0.1 <2.0.0'
