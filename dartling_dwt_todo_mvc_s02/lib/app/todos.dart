@@ -46,7 +46,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
 
   react(ActionApi action) {
     if (action is AddAction) {
-      _add((action as AddAction).entity);
+      _add(action.entity);
     }
     _todoApp.save();
   }

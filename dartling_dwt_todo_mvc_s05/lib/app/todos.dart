@@ -50,7 +50,7 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
 
   react(ActionApi action) {
     if (action is Transaction) {
-      for (var transactionAction in (action as Transaction).past.actions) {
+      for (var transactionAction in action.past.actions) {
         if (transactionAction is RemoveAction) {
           if (transactionAction.undone) {
             _add(transactionAction.entity);
@@ -67,13 +67,13 @@ class Todos extends ui.VerticalPanel implements ActionReactionApi {
       }
     } else if (action is RemoveAction) {
       if (action.undone) {
-        _add((action as RemoveAction).entity);
+        _add(action.entity);
       } else {
-        _remove((action as RemoveAction).entity);
+        _remove(action.entity);
       }
     } else if (action is SetAttributeAction) {
-      if ((action as SetAttributeAction).property == 'completed') {
-        _complete((action as SetAttributeAction).entity);
+      if (action.property == 'completed') {
+        _complete(action.entity);
       }
     }
     _todoApp.updateDisplay();
