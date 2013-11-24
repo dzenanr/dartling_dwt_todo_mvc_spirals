@@ -23,7 +23,8 @@ class Todos extends ui.Composite implements ActionReactionApi {
    * Load list of task as JSON string, deserialize and create Todo components.
    */
   _load(Tasks tasks) {
-    String json = window.localStorage['todos-dartling-dwt'];
+    // todos-dartling-dwt
+    String json = window.localStorage['avocat3'];
     if (json != null) {
       try {
         tasks.fromJson(JSON.decode(json));
@@ -33,6 +34,25 @@ class Todos extends ui.Composite implements ActionReactionApi {
       } on Exception catch(e) {
         print(e);
       }
+    } else {
+      if (tasks.length == 0) {
+        _initTasks(tasks);
+      }
+    }
+  }
+
+  _initTasks(Tasks tasks) {
+    Task task1 = new Task(tasks.concept);
+    task1.title = 'Design a model with Model Concepts.';
+    task1.completed = true;
+    tasks.add(task1);
+
+    Task task2 = new Task(tasks.concept);
+    task2.title = 'Generate json for the model in Model Concepts.';
+    tasks.add(task2);
+
+    for (var task in tasks) {
+      _add(task);
     }
   }
 

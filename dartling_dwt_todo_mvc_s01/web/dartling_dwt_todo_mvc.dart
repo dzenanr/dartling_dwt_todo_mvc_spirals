@@ -6,6 +6,7 @@ main() {
   var repo = new TodoRepo();
   var domain = repo.getDomainModels('Todo');
   var model = domain.getModelEntries('Mvc');
+  //initTodoMvc(model);
   new TodoApp(model.tasks);
 }
 

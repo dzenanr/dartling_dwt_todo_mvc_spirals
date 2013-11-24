@@ -23,6 +23,11 @@ class Todos extends ui.VerticalPanel {
 
     _listPanel.spacing = 4;
     add(_listPanel);
+    /*
+    for (var task in tasks) {
+      _add(task);
+    }
+    */
   }
 
   _add(Task task) {
