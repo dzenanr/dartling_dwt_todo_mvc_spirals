@@ -1,6 +1,6 @@
 // test/todo/mvc/todo_mvc_test.dart
 
-import "package:unittest/unittest.dart";
+import "package:test/test.dart";
 
 import "package:dartling/dartling.dart";
 
@@ -15,32 +15,23 @@ testTodoMvc(Repo repo, String domainCode, String modelCode) {
     setUp(() {
       var models = repo.getDomainModels(domainCode);
       entries = models.getModelEntries(modelCode);
-      expect(entries, isNotNull);
       tasks = entries.tasks;
-      expect(tasks.length, equals(length));
       concept = tasks.concept;
-      expect(concept, isNotNull);
-      expect(concept.attributes.toList(), isNot(isEmpty));
 
       var design = new Task(concept);
-      expect(design, isNotNull);
       design.title = 'design a model';
       tasks.add(design);
-      expect(tasks.length, equals(++length));
 
       var json = new Task(concept);
       json.title = 'generate json from the model';
       tasks.add(json);
-      expect(tasks.length, equals(++length));
 
       var generate = new Task(concept);
       generate.title = 'generate code from the json document';
       tasks.add(generate);
-      expect(tasks.length, equals(++length));
     });
     tearDown(() {
       tasks.clear();
-      expect(tasks.isEmpty, isTrue);
       length = 0;
     });
     test('Empty Entries Test', () {
